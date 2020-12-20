@@ -145,7 +145,7 @@ Ponadto możemy śledzić w czasie rzeczywistym pojazdy na interesującej nas li
 - Wyświetlenie listy linii autobusowych/tramwajowych odjeżdżających z wybranego przystanku
     - Użytkownik powinien mieć możliwość podejrzenia najbliższej godziny odjazdu każdej z linii
 - Wyświetlenie rozkładu jazdy wybranej linii z zadanego przystanku
-    - Domyślnie powinien być widoczny rozkład na bierzący dzień
+    - Domyślnie powinien być widoczny rozkład na bieżący dzień
     - Użytkownik ma możliwość wybrania innej daty
 - Możliwość śledzenia wszystkich pojazdów na wybranej linii na mapie w czasie rzeczywistym
     - Pozycje pojazdów powinno odświeżać się maksymalnie co 60s
@@ -155,40 +155,13 @@ Ponadto możemy śledzić w czasie rzeczywistym pojazdy na interesującej nas li
     
 ### Dodatkowe funkcjonalności (do zaimplementowania jeśli zespół zdąży z podstawowym zakresem)
 - Podpowiadanie najbliższego przystanku na podstawie lokalizacji użytkownika
-- Wybór przystanku po kliknięci w marker na mapie
+- Wybór przystanku po kliknięci w marker na mapie 
+- Speech Recognition API do wprowadzania nazwy przystanku
 
-
-### Założenia projektowe
-Jedna ze znanych marek płatków śniadaniowych prowadzi wieloletnią współpracę z wytwórnią filmów Disney, do której od niedawna należą także Gwiezdne Wojny.
-W ramach kolejnej akcji promocyjnej wasz zespół został poproszony o przygotowanie Proof of Concept aplikacji związanej ze Star Wars.
-Po wstępnym rozpoznaniu i analizie biznesowej podjęto decyzję o przygotowaniu quizu sprawdzającego znajomość uniwersum Gwiezdnych Wojen.
-Ma to być aplikacja webowa działająca w przeglądarce, bez potrzeby instalacji.
-
-Klient dostarczył prototyp interfejsu użytkownika dostosowany pod Desktop ([TUTAJ](https://www.figma.com/proto/4HOOjnEYjb7W7xEh2Vb4lx/CodersCamp2020.Project.JavaScript.StarWarsQuiz?node-id=256%3A127&scaling=min-zoom)).
-Pokazany został tylko jeden tryb i jedno pytanie. Cała reszta działa analogicznie.
-Projekt: https://www.figma.com/file/4HOOjnEYjb7W7xEh2Vb4lx/CodersCamp2020.Project.JavaScript.StarWarsQuiz?node-id=256%3A107
-Może się przydać do odczytania np. cieni i kolorów. Nie zwracajcie uwagi na jednostki w px, należy użyć jednostek responsywnych.
-
-
-Dostarczona została także lista funkcjonalności. 
-1. Wybór trybu quizu (People, Vehicles, Spaceships)
-2. Opis zasad dla quizu. Obok zasad pokazuje się losowe zdjęcie z danego trybu (dostosowany opis, jeśli np. imię osoby ze zdjęcia jest w opisie zasad).
-3. Po rozpoczęciu gry rozpoczyna się odliczanie czasu (2 minuty).
-4. Zadaniem gracza jest odpowiedzieć na jak najwięcej pytań w ciągu ustalonego czasu (dodatkowo gracz konkuruje także z komputerem! Komputer tak samo jak gracz próbuje rozpoznać co jest na grafice). 
-5. W trakcie trwania quizu miecz świetlny pokazuje, ile jeszcze czasu zostało. Po wybraniu odpowiedzi zostaje ukazane przez sekundę czy odpowiedź była dobra czy zła. Następnie pytanie zostaje zmienione na kolejne (prototyp pokazuje jedynie 1 pytanie) i tak do końca czasu.
-5. Pytania są generowane w następujący sposób: 
-    - zostaje pobrany losowy zasób z danego trybu (np people o id 5)
-    - zostanie pobrane dla wylosowanego zasobu zdjęcie
-    - losowane są 3 odpowiedzi z zapytania do StarWars API. Dla trybu "People" będzie to: https://swapi.co/api/people (jedna brana jest z wcześniej wylosowanego, musi być poprawna)
-6. Po ukończeniu czasu wynik gracza zapisywany jest w rankingu dla danej przeglądarki (LocalStorage) i pokazywany jest ranking 3 najlepszych wyników.
-
-Jedno z wcześniejszych wykonań działającej aplikacji możecie zobaczyć [TUTAJ](https://nowakprojects.github.io/CodersCamp2020.Project.JavaScript.StarWarsQuiz.SampleSolution/index.html). 
-Jednakże nie należy się na nim 100% wzorować.
-Niektóre wymagania mogły ulec zmianie, a przedstawiana aplikacja nie jest responsywna.
-**Jeśli macie w swoim zespole osobę chętną na przygotowanie designów, to także możecie UI zrobić kompletnie inaczej.**
-
+### Pozostałe informacje
+Jako źródło danych należy wykorzystać [API UM Warszawy](https://api.um.warszawa.pl/).
 Waszym zadaniem będzie zaimplementować aplikację, aby działała wg wymagań klienta, a także przygotować i wykonać
-wersję responsywną aplikacji (dostosowaną do wyświetlania na Tabletach i Telefonach — możecie przygotować najpierw projekt interfejsu, lub od razu przejść do implementacji).
+wersję responsywną aplikacji (przede wszystkim dostosowaną do wyświetlania na Tabletach i Telefonach — możecie przygotować najpierw projekt interfejsu, lub od razu przejść do implementacji).
 W celu zaprezentowania działania aplikacja musi być możliwa do odwiedzenia w internecie.
 Klient nie chce ponosić za to żadnych dodatkowych kosztów, dlatego należy wykorzystać jedną z usług oferujących darmowe
 uruchomienie takiej aplikacji (np. GitHub Pages).
@@ -225,10 +198,6 @@ Aby uruchomić testy aplikacji, wykonaj następujące kroki:
 
 Kod testów umieszczamy w katalogu `test`.
 
-## Możliwe usprawnienia i dodatkowe funkcjonalności:
-- Wykorzystanie Speech Recognition API i wyszukiwanie odpowiedzi, jaką gracz wypowiedział zamiast klikania w przycisk z odpowiedzią.
-- Rozbudowanie ustawień gry o możliwość wyboru czasu na rozgrywkę. 
-
 ## Dodatkowe zadania (wykraczające poza zakres kursu):
 Jeśli starczy Wam czasu, zachęcamy do wykonania chociaż jednego z wymienionych poniżej. 
 Możliwe jest też dodanie zaprojektowanej przez Was funkcjonalności. 
@@ -254,7 +223,7 @@ To complete your Free Trial signup, you must provide a credit card or other paym
 - JavaScript
 - HTML
 - CSS
-- Star Wars API
+- API UM Warszawy
 - opcjonalnie: Google Vision API / Electron.js / Cypress
 
 **Uwaga:** Każda inna technologia / Biblioteka jak najbardziej mile widziana, jeśli pomoże Ci osiągnąć zamierzony cel — zgodnie z opisanymi na początku zasadami :) 
