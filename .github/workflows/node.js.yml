@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    name: "Build Star Wars Quiz application"
+    name: "Build WarszawskiZbiorKom application"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

@@ -1,17 +1,11 @@
-**UWAGA! Zaczynając pracę nad projektem — nie róbcie forka.
-Jedna osoba z zespołu (np. Mentor) powinna użyć przycisku `Use this template` i dodać innych członków zespołu jako Collaborators do tego repozytorium.**
-
 # CodersCamp 2020 - Projekt JavaScript
 **CodersCamp (coderscamp.edu.pl) - Największy otwarty kurs programowania webowego** 
 
 Wykorzystanie asynchronicznego JavaScript oraz korzystanie z REST API.
 
-![Star Wars Quiz - Ekrany](./.github/images/StarWarsQuizEkrany.png)
-Proponowany projekt — Quiz Star Wars (opis poniżej).
+## Zasady wykonywania projektu (wspólne dla wszystkich grup i mentorów): 
 
-### Zasady wykonywania projektu (wspólne dla wszystkich grup i mentorów): 
-
-##### W projekcie każdy z uczestników powinien zaprezentować praktyczną znajomość poniższych zagadnień związanych z JavaScript:
+### W projekcie każdy z uczestników powinien zaprezentować praktyczną znajomość poniższych zagadnień związanych z JavaScript:
 - zmienne
 - operatory porównania
 - pętle
@@ -42,7 +36,7 @@ Ważne, żeby opanować, to co, jest pod spodem gotowych już bibliotek i budowa
 Skupcie się na wykorzystaniu w praktyce tego, co nauczyliście się dzięki materiałom w przerabianym dziale.
  
 
-##### W trakcie trwania projektu należy wyznaczyć w zespole odpowiednie funkcje
+### W trakcie trwania projektu należy wyznaczyć w zespole odpowiednie funkcje
 Aby zespół pracował efektywnie, ważne jest, żeby było wiadomo, kto odpowiada, za jaką kwestię.
 Powstało wiele różnych metodyk wspomagające działanie zespołu, które stosuje się także przy pracy programisty.
 
@@ -140,18 +134,29 @@ Zachęcamy mentorów do uzasadniania przydzielonych punktów, tak abyście mogli
 Mentorzy mają różne doświadczenie zawodowe i będą z pewnością właśnie oceniać projekty przez jego pryzmat. 
 Dzięki zmianom mentorów recenzentów zobaczycie z pewnością różne spojrzenia na podobne kwestie.
 
+## Warszawski ZbiorKom
+Do waszej firmy zgłosił się inwestor, który ma pomysł na aplikację ułatwiającą poruszanie się po warszawie.
+Warszawski ZbiorKom to aplikacja webowa ułatwiająca korzystanie z warszawskiej komunikacji publicznej.
+Wykorzystuje publiczne API Urzędu Miasta Warszawy do wyszukiwania lini autobusowych i tramwajowych.
+Pozwala sprawdzić kiedy odjedzie najbliższy autobus lub tramwaj z interesującego nas przystanku.
+Ponadto możemy śledzić w czasie rzeczywistym pojazdy na interesującej nas linii.
 
-## Quiz Gwiezdne Wojny
-Teraz przechodzimy do przykładowego projektu, który został przygotowany przez organizatorów kursu.
-Proponowany projekt pozwala na zastosowania większości umiejętności, jakie powinniście posiąść w trakcie przerabiania działu.
-Jednakże jeśli macie pomysł na projekt podobnej skali, który spełni opisane na górze wymagania i czujecie się na siłach
-w zdefiniowaniu funkcjonalności, przygotowaniu ekranów i podzieleniu go na zadania — to nic nie stoi na przeszkodzie,
-aby wykonać np. coś związanego z zainteresowaniami Waszej grupy :) 
-W trakcie Coders Camp będą do wykonania jeszcze 2 kolejne aplikacje, więc jeśli teraz zdecydujecie się na projekt proponowany, zawsze w kolejnych możecie wykonać aplikacje wg. własnego pomysłu.
-**Ostateczną decyzję, jaką aplikację realizować podejmuje mentor — to on zawsze wie najlepiej, co będzie z największą korzyścią dla Was i przy czym najwięcej się nauczycie.**
-Powodzenia!
- 
-Czas porzucić narrację CodersCamp i wcielić się w członka zespołu projektowego...
+### Funkcjonalności
+- Wyświetlenie listy linii autobusowych/tramwajowych odjeżdżających z wybranego przystanku
+    - Użytkownik powinien mieć możliwość podejrzenia najbliższej godziny odjazdu każdej z linii
+- Wyświetlenie rozkładu jazdy wybranej linii z zadanego przystanku
+    - Domyślnie powinien być widoczny rozkład na bierzący dzień
+    - Użytkownik ma możliwość wybrania innej daty
+- Możliwość śledzenia wszystkich pojazdów na wybranej linii na mapie w czasie rzeczywistym
+    - Pozycje pojazdów powinno odświeżać się maksymalnie co 60s
+    - Pojazdy powinny być oznaczone na mapie markerami
+    - Przystanki na linii powinny być oznaczone markerami
+    - Mapa inicjalnie powinna zostać wyskalowana tak, aby cała liniia była widoczna (z możliwością przybliżania i oddalania widoku)
+    
+### Dodatkowe funkcjonalności (do zaimplementowania jeśli zespół zdąży z podstawowym zakresem)
+- Podpowiadanie najbliższego przystanku na podstawie lokalizacji użytkownika
+- Wybór przystanku po kliknięci w marker na mapie
+
 
 ### Założenia projektowe
 Jedna ze znanych marek płatków śniadaniowych prowadzi wieloletnią współpracę z wytwórnią filmów Disney, do której od niedawna należą także Gwiezdne Wojny.
@@ -192,11 +197,6 @@ Naprawdę macie szczęście co do klienta! Wielu uważa testy za niepotrzebne i 
 A co znaczy „odpowiednio pokryta”? To już należy właśnie ustalić z samym Klientem :) 
 Wszelkie nieścisłości w wymaganiach powinien wyjaśniać Product Owner wraz z Klientem.
 
-### EventModeling
-Działanie aplikacji zostało także zamodelowane za pomocą techniki EventModeling.
-Jeżeli chcecie, to możecie skorzystać z poniższego diagramu. Zapoznać się z tą techniką możecie na [blogu autora tej metodologi](https://eventmodeling.org/posts/what-is-event-modeling/).
-Aktualny diagram jest też dostępny w lepszej jakości na [tablicy MIRO](https://miro.com/app/board/o9J_kg8fTO4=/?moveToWidget=3074457351245562568&cot=12).
-![StarWarsQuizEventModeling](.github/images/StarWarsQuizEventModeling.png)
 
 ### Kod startowy projektu
 Nad aplikacją pracę wcześniej zaczęli też inni programiści, po których otrzymujecie mały kawałek kodu.
@@ -207,11 +207,6 @@ Wasza aplikacja powinna zostać wdrożona na GitHub Pages.
 1. Aplikacja jest budowana przy pomocy narzędzia Parcel, z którym mieliście okazję się zapoznać w materiałach.
 1. Został dodany framework do testów — Jest w sposób opisany [TUTAJ](https://ryankubik.com/blog/parcel-and-jest/).
     - Testy powinny zostać umieszczone w katalogu `test`. Kod produkcyjny (testowany) w katalogu `src`.
-1. SWApi, z którego będziecie korzystać, ma ograniczenie do 1000 zapytań z jednego adresu IP na dzień. 
-Dlatego, jeśli przekroczycie tę liczbę w trakcie developmentu, przydatne możecie się okazać użycie JSON SERVER z katalogu `swapi-json-server`.
-1. SWApi nie zwraca wam obrazków dla poszczególnych zasobów, dlatego w katalogu `static/assets/img` znajdziecie obrazy odpowiadające konkretnym zasobom.
-1. W katalogu `static/images/ui` znajdziecie wszystkie grafiki, jakie będą Wam potrzebne do wykonania interfejsu użytkownika wg projektu.
-Jednakże jeśli jesteście w stanie zaproponować lepszy Interfejs Użytkownika, może zaproponować i wykonać alternatywny widok oraz zrezygnować z wcześniej przygotowanego.
 
 #### Uruchomienie projektu
 Aby uruchomić aplikację na lokalnej maszynie, wykonaj następujące kroki:
