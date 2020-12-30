@@ -5,8 +5,8 @@
 
 // window.onload = () => App({options: {wawApiBaseUrl: WAW_API_BASE_URL}})
 
-let busStopId = window.prompt("Podaj identyfikator przystanku:");
-          let busStopNr = window.prompt("Podaj identyfikator słupka:");
+let busStopId = window.prompt("Podaj identyfikator przystanku :");
+          let busStopNr = window.prompt("Podaj identyfikator słupka :");
           const endpoint =
               `https://api.um.warszawa.pl/api/action/dbtimetable_get/?id=88cd555f-6f31-43ca-9de4-66c479ad5942&busstopId=${busStopId}&busstopNr=${busStopNr}&apikey=213a69a2-30fb-4d1e-b819-aa1b5c02f3c6`;
           fetch(endpoint)
