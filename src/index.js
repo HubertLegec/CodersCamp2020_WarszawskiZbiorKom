@@ -6,8 +6,6 @@
 
 // window.onload = () => App({options: {wawApiBaseUrl: WAW_API_BASE_URL}})
 
-
-
 let busStopId = window.prompt("Podaj identyfikator przystanku:");
 let busStopNr = window.prompt("Podaj identyfikator słupka:");
 let stopName;
