@@ -21,11 +21,16 @@ export const App = ({ options}) => {
 
     }
 
-    async function createStopsList() {
-
+    async function getData(url) {
         const response = await fetch(url);
         const data = await response.json();
 
+        return data;
+    }
+
+    async function createStopsList() {
+
+        const data = await getData(url);
         populateStorage('stopsList', JSON.stringify(data));
 
         for (let stop of JSON.parse(localStorage.getItem('stopsList'))['result']) {
