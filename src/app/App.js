@@ -5,8 +5,9 @@ export const App = ({ options}) => {
     const storage = new StorageManager();
     const apiClient = new ApiClient('https://api.um.warszawa.pl/api/');
     const domModifier = new DOMModifier();
+    const stopsSearchInputDatalist = document.querySelector('#AllStops');
 
     apiClient.getStops().then(result => storage.storeData('stopsList', result));
-    domModifier.createStopsDatalist('AllStops', storage.getData('stopsList'));
+    domModifier.createStopsDatalist(stopsSearchInputDatalist, storage.getData('stopsList'));
 
 }
