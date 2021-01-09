@@ -4,19 +4,13 @@ export class ApiClient {
         this.baseUrl = baseUrl;
     }
 
-    async getStops(endpointUrl) {
-        const stopsList = [];
-        
+    async getStops(endpointUrl) {        
         const response = await fetch(`${this.baseUrl}${endpointUrl}`);
         const data = await response.json();
                 
-        data['result'].forEach(element => {
-            const stop = new Stop(element['values'][2]['value'], element['values'][1]['value'], element['values'][0]['value'], element['values'][4]['value'], element['values'][5]['value'], element['values'][6]['value']);
-            stopsList.push(stop);
-        });
-
-
-        return stopsList.sort((a, b) => a.name.localeCompare(b.name));
-    }
+        return data['result']
+        .map(e => e['values'])
+        .map(values => new Stop(values[2]['value'], values[1]['value'], values[0]['value'], values[4]['value'], values[5]['value'], values[6]['value']));
+    };
 
 }
