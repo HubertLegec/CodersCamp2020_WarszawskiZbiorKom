@@ -6,6 +6,5 @@ export class Stop {
         this.lat = lat;
         this.lng = lng;
         this.direction = direction;
-        this.lines = [];
     }
 }

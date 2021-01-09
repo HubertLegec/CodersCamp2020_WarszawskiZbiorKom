@@ -20,16 +20,4 @@ export class ApiClient {
         return stopsList.sort((a, b) => a.name.localeCompare(b.name));
     }
 
-    async getStopLines(stop){
-        const endpointUrl = `action/dbtimetable_get?id=88cd555f-6f31-43ca-9de4-66c479ad5942&busstopId=${stop.id}&busstopNr=${stop.number}&apikey=66b60069-cff2-418b-a9a9-4a64cfc17443`;
-        const stopLinesList = [];
-
-        const response = await fetch(`${this.baseUrl}${endpointUrl}`);
-        const data = await response.json();
-
-        data['result'].forEach(element => stopLinesList.push(element['values'][0]['value']));
-
-        return stopLinesList;
-    }
-
 }
