@@ -4,8 +4,7 @@ export class ApiClient {
         this.baseUrl = baseUrl;
     }
 
-    async getStops() {
-        const endpointUrl = 'action/dbstore_get/?id=ab75c33d-3a26-4342-b36a-6e5fef0a3ac3&sortBy=id&apikey=66b60069-cff2-418b-a9a9-4a64cfc17443'
+    async getStops(endpointUrl) {
         const stopsList = [];
         
         const response = await fetch(`${this.baseUrl}${endpointUrl}`);
