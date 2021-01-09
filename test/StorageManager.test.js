@@ -6,51 +6,21 @@ beforeEach(() => {
 
 // Testing storeData function
 
-test('storeData function stores data if empty', () => {
-    const mockStorage = new StorageManager();
+test('storeData function stores data inside local storage', () => {
+    const storeManager = new StorageManager();
     const mockObject = {
         key: 'mockKey',
         value: 'mockvalue'
     };
-    mockStorage.storeData('mockObject', mockObject);
+    storeManager.storeData('mockObject', mockObject);
 
-    expect(localStorage.getItem('mockObject')).not.toEqual(null);
-});
-
-test('storeData function returns false if same value', () => {
-    const mockStorage = new StorageManager();
-    const mockObject = {
-        key: 'mockKey',
-        value: 'mockvalue'
-    };
-
-    mockStorage.storeData('mockObject', mockObject);
-
-    expect(mockStorage.storeData('mockObject', mockObject)).toEqual(false);
-})
-
-test('storeData function modifies data if different value', () => {
-    const mockStorage = new StorageManager();
-    const mockObject1 = {
-        key: 'mockKey',
-        value: 'mockvalue1'
-    };
-    const mockObject2 = {
-        key: 'mockKey',
-        value: 'mockvalue2'
-    };
-
-    mockStorage.storeData('mockObject', mockObject1);
-    mockStorage.storeData('mockObject', mockObject2);
-
-    expect(JSON.parse(localStorage.getItem('mockObject'))).toEqual(mockObject2);
-
+    expect(JSON.parse(localStorage.getItem('mockObject'))).toEqual(mockObject);
 });
 
 // Testing getData function
 
-test('getData function returns parsed data', () => {
-    const mockStorage = new StorageManager();
+test('getData function returns stored object', () => {
+    const storageManager = new StorageManager();
     const mockObject = {
         key: 'mockKey',
         value: 'mockvalue'
@@ -58,23 +28,11 @@ test('getData function returns parsed data', () => {
 
     localStorage.setItem('mockObject', JSON.stringify(mockObject));
 
-    expect(typeof mockStorage.getData('mockObject')).toEqual('object');
+    expect(storageManager.getData('mockObject')).toEqual(mockObject);
 })
 
-test('getData function gets stored data', () => {
-    const mockStorage = new StorageManager();
-    const mockObject = {
-        key: 'mockKey',
-        value: 'mockvalue'
-    }
-
-    localStorage.setItem('mockObject', JSON.stringify(mockObject));
-
-    expect(mockStorage.getData('mockObject')).toEqual(mockObject);
-})
-
-test('getData function returns false if storage is empty', () => {
-    const mockStorage = new StorageManager();
+test('getData function returns null if storage is empty', () => {
+    const storageManager = new StorageManager();
     
-    expect(mockStorage.getData('mockObject')).toEqual(false);
+    expect(storageManager.getData('mockObject')).toEqual(null);
 })
