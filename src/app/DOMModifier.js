@@ -1,11 +1,14 @@
 export class DOMModifier {
 
-    createStopsDatalist(datalistElement, stopsList) {
+    createSortedStopsDatalist(datalistId, stopsList) {
             // creating datalist options
+            const datalist = document.getElementById(datalistId);
+            stopsList.sort((a, b) => `${a.name} ${a.number}`.localeCompare(`${b.name} ${b.number}`));
+
             for (let element of stopsList) {
-            let option = document.createElement('option');
+            const option = document.createElement('option');
             option.value = `${element.name} ${element.number}`;
-            datalistElement.append(option);
+            datalist.append(option);
         }
         
     }
