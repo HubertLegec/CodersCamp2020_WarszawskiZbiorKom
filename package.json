@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/CodersCamp2020/CodersCamp2020.Project.JavaScript.StarWarsQuiz#readme",
   "dependencies": {
+    "node-fetch": "^2.6.1",
     "regenerator-runtime": "^0.13.7",
     "uuid": "^8.3.0"
   },
@@ -36,6 +37,7 @@
     "@testing-library/user-event": "^12.2.2",
     "babel-jest": "^26.5.0",
     "cssnano": "^4.1.10",
+    "fetch-mock-jest": "^1.5.1",
     "jest": "^26.4.2",
     "jest-fetch-mock": "^3.0.3",
     "msw": "^0.21.3",
