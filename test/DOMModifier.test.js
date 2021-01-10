@@ -1,20 +1,23 @@
 import {DOMModifier} from '../src/app/DOMModifier';
-import {getByTestId, queries} from '@testing-library/dom';
+import {getByDisplayValue, getByTestId, getByRole} from '@testing-library/dom';
 import '@testing-library/jest-dom/extend-expect';
 
 function createMockInputWithDatalist() {
-    
 
     const div = document.createElement('div');
     div.innerHTML = `
     <input type="search" list="AllStops" name="FindStop" id="FindStop">
     <datalist id="AllStops" data-testid="datalist"></datalist>
   `;
+    
 
     return div;
 }
 
 //Testing createStopsDatalist function
+beforeEach(() => {
+    document.body.innerHTML = '';
+})
 
 test('function creates options for every array element', () => {
     const domModifier = new DOMModifier();
@@ -29,10 +32,10 @@ test('function creates options for every array element', () => {
         number: '02'
     }];
 
-    const container = createMockInputWithDatalist();
-    const datalist = container.querySelector('#AllStops');
+    const container = document.body;
+    container.append(createMockInputWithDatalist());
 
-    domModifier.createStopsDatalist(datalist, stopsMockList);
+    domModifier.createSortedStopsDatalist('AllStops', stopsMockList);
 
     expect(getByTestId(container, 'datalist').childElementCount).toEqual(3);
 
@@ -45,11 +48,10 @@ test('function creates option text from name and number properties', () => {
         number: '01'
     }];
 
-    const container = createMockInputWithDatalist();
-    const datalist = container.querySelector('#AllStops');
+    const container = document.body;
+    container.append(createMockInputWithDatalist());
 
-    domModifier.createStopsDatalist(datalist, stopsMockList);
+    domModifier.createSortedStopsDatalist('AllStops', stopsMockList);
 
-
-    expect(getByTestId(container, 'datalist').firstChild.value).toEqual('Marszałkowska 01');
+    expect(getByRole(container, 'option', {hidden: true}).value).toEqual('Marszałkowska 01');
 })
