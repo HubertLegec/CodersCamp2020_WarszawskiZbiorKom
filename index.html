@@ -17,20 +17,16 @@
           rel="stylesheet">
 </head>
 <body>
-    <button id="getAllBusStops">getAllBusStops</button>
 
     <div id="zbiorkom-app">
-        <input type="search" placeholder="Enter line number" name="q" id="FindStops">
-        <button id="submitLineNumber">FindStopsByLine</button>
-        
+        <button id="getAllBusStops">getAllBusStops</button>
+        <input type="search" placeholder="Enter line number" name="q" id="LineNumberInput">
+        <input type="search" placeholder="Enter stop name" name="q" id="StopNameInput">
+        <button id="submitSearch">FindStopsByLine</button>
+
+        <div id="map" style = "width: 100%; height: 100vh"></div>
     </div>
-
-    <div id="mapid" style = "width: 100%; height: 95vh"></div>
-
-
-
-
-<script src="src/index.js"></script>
-<script src="src/app/BusStops.js"></script>
+    
+    <script src="src/index.js"></script>
 </body>
 </html>
