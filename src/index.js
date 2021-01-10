@@ -1,5 +1,6 @@
 import 'regenerator-runtime/runtime' //async/await with Parcel
 import {App} from "./app/App";
+import {loadMap} from "./app/Map";
 
 
 const WAW_API_BASE_URL = "https://api.um.warszawa.pl/api/" || process.env.WAW_API_BASE_URL;
