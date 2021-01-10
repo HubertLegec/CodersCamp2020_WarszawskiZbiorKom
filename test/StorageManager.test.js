@@ -1,38 +1,46 @@
 import {StorageManager} from '../src/app/StorageManager';
 
-beforeEach(() => {
-    localStorage.clear();
-});
+describe('StorageManager testing', () => {
 
-// Testing storeData function
+    beforeEach(() => {
+        localStorage.clear();
+    });
 
-test('storeData function stores data inside local storage', () => {
-    const storeManager = new StorageManager();
-    const mockObject = {
-        key: 'mockKey',
-        value: 'mockvalue'
-    };
-    storeManager.storeData('mockObject', mockObject);
+    describe('storeData function testing', () => {
 
-    expect(JSON.parse(localStorage.getItem('mockObject'))).toEqual(mockObject);
-});
+        test('stores data inside local storage', () => {
+            const storeManager = new StorageManager();
+            const mockObject = {
+                key: 'mockKey',
+                value: 'mockvalue'
+            };
+            storeManager.storeData('mockObject', mockObject);
+        
+            expect(JSON.parse(localStorage.getItem('mockObject'))).toEqual(mockObject);
+        });
 
-// Testing getData function
+    })
 
-test('getData function returns stored object', () => {
-    const storageManager = new StorageManager();
-    const mockObject = {
-        key: 'mockKey',
-        value: 'mockvalue'
-    }
+    describe('getData function testing', () => {
 
-    localStorage.setItem('mockObject', JSON.stringify(mockObject));
+        test('returns stored object', () => {
+            const storageManager = new StorageManager();
+            const mockObject = {
+                key: 'mockKey',
+                value: 'mockvalue'
+            }
+        
+            localStorage.setItem('mockObject', JSON.stringify(mockObject));
+        
+            expect(storageManager.getData('mockObject')).toEqual(mockObject);
+        })
+        
+        test('returns null if storage is empty', () => {
+            const storageManager = new StorageManager();
+            
+            expect(storageManager.getData('mockObject')).toEqual(null);
+        })
 
-    expect(storageManager.getData('mockObject')).toEqual(mockObject);
-})
+    })
 
-test('getData function returns null if storage is empty', () => {
-    const storageManager = new StorageManager();
-    
-    expect(storageManager.getData('mockObject')).toEqual(null);
 })
