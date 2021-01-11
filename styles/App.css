@@ -1,3 +1,24 @@
 body {
     font-family: 'Montserrat', sans-serif;
 }
+
+#autoComplete{
+    padding: 5px;
+}
+
+#autoComplete_list{
+    max-width: 400px;
+    box-shadow: 2px 2px 2px rgba(0,0,0,.1);
+    padding: 0;
+}
+
+#autoComplete_list li{
+    padding: 10px 5px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background-color .2s ease;
+}
+
+#autoComplete_list li:hover{
+    background-color: rgba(0,0,0,.1);
+}

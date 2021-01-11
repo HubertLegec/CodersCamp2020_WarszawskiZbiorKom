@@ -1,12 +1,18 @@
 import {ApiClient} from './ApiClient';
 import {StorageManager} from './StorageManager';
-import {DOMModifier} from './DOMModifier';
+import {SearchManager} from './SearchManager';
+
 export const App = async ({options}) => {
     const storage = new StorageManager();
     const apiClient = new ApiClient(options['wawApiBaseUrl']);
-    const domModifier = new DOMModifier();
+    const query = await apiClient.getStops(`${options['wawApiAllStops']}${options['wawApiKey']}`);
+    storage.storeData('stopsList', query);   
 
-    const result = await apiClient.getStops(`${options['wawApiAllStops']}${options['wawApiKey']}`);
-    storage.storeData('stopsList', result);   
-    domModifier.createSortedStopsDatalist('AllStops', storage.getData('stopsList'));
+    const autoComplete = new SearchManager('name');
+    document.querySelector("#autoComplete").addEventListener("results", (event) => {
+        return event;
+    });
+
+
+
 }
