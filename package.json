@@ -39,6 +39,7 @@
     "fetch-mock-jest": "^1.5.1",
     "jest": "^26.4.2",
     "jest-fetch-mock": "^3.0.3",
+    "jest-localstorage-mock": "^2.4.6",
     "msw": "^0.21.3",
     "node-fetch": "^2.6.1",
     "parcel": "^1.12.4",
@@ -55,7 +56,8 @@
     "testRegex": "(spec|test)[.]js",
     "coverageDirectory": "../coverage",
     "setupFiles": [
-      "./test/setupJest.js"
+      "./test/setupJest.js",
+      "jest-localstorage-mock"
     ],
     "collectCoverageFrom": [
       "./src/**"

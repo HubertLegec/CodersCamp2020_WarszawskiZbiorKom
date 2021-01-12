@@ -14,9 +14,12 @@
 </head>
 
 <body>
-    <input type="search" list="AllStops" name="FindStop" id="FindStop">
+    <div id="zbiorkom-app">
+        <input type="search" list="AllStops" name="FindStop" id="FindStop">
+        <datalist id="AllStops"></datalist>
+    </div>
     <button id="searchStop">Znajdź przystanek</button>
-    <datalist id="AllStops"></datalist>
+
     <a href=""><i class="fas fa-train"></i></a>
     <div id="linesList" class="linesList">
     </div>
