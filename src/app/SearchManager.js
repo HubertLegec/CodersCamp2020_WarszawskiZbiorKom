@@ -12,12 +12,12 @@ export class SearchManager {
                     .querySelector("#autoComplete")
                     .setAttribute("placeholder", "Znajdź przystanek");
 
-                const data = await JSON.parse(window.localStorage.stopsList);
-               
+                let data = await JSON.parse(window.localStorage.stopsList);
+                data = await data.map(s => s = {...s, ...{Nazwa : `${s.name} ${s.number}`}})
                 // Returns Fetched data
                 return data;
             },
-            key: ["name"],
+            key: ["Nazwa"],
             results: (list) => {
                 // Filter duplicates
                 const filteredResults = Array.from(
