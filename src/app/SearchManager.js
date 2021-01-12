@@ -13,7 +13,9 @@ export class SearchManager {
                     .setAttribute("placeholder", "Znajdź przystanek");
 
                 let data = await JSON.parse(window.localStorage.stopsList);
-                data = await data.map(s => s = {...s, ...{Nazwa : `${s.name} ${s.number}`}})
+                data = await data
+                .map(s => s = {...s, ...{Nazwa : `${s.name} ${s.number}`}})
+                .sort((s1, s2) => s1.Nazwa.localeCompare(s2.Nazwa))
                 // Returns Fetched data
                 return data;
             },

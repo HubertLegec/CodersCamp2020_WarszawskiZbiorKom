@@ -1,6 +1,6 @@
 export class InputSearch {
 
-    createInput = () => {
+    createInput(){
         let input = document.createElement('input');
         input.id = 'autoComplete';
         input.type = 'search';
