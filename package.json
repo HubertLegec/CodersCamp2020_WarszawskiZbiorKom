@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/CodersCamp2020/CodersCamp2020.Project.JavaScript.StarWarsQuiz#readme",
   "dependencies": {
+    "leaflet": "^1.7.1",
     "regenerator-runtime": "^0.13.7",
     "uuid": "^8.3.0"
   },
