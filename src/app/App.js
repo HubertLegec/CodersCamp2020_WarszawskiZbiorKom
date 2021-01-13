@@ -15,7 +15,4 @@ export const App = async ({ options }) => {
     document.querySelector("#autoComplete").addEventListener("results", (event) => {
         return event;
     });
-
-
-
 }
