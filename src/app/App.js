@@ -1,14 +1,17 @@
-import {displayTransportLines} from "./ApiClient";
 import {ApiClient} from './ApiClient';
+import {createURL} from './ApiClient';
 import {StorageManager} from './StorageManager';
 import {DOMModifier} from './DOMModifier';
 export const App = async ({options}) => {
     const storage = new StorageManager();
-    const apiClient = new ApiClient(options['wawApiBaseUrl']);
-    const domModifier = new DOMModifier();
-    const displayLinesList = new displayTransportLines(options.wawApiKey, options.wawApiBaseUrl, options['wawApiGetId'])
+    const apiClient = new ApiClient(options['wawApiBaseUrl'], options['wawApiKey']);
+    const createUrl = new createURL();
     const result = await apiClient.getStops(`${options['wawApiAllStops']}${options['wawApiKey']}`);
     storage.storeData('stopsList', result);   
-    domModifier.createSortedStopsDatalist('AllStops', storage.getData('stopsList'));    
-    displayLinesList.linesList()
+    const obj = {
+        id: "7013",
+        stopNr: "01",
+    }
+    const domModifier = new DOMModifier(obj.id, obj.stopNr, (id, stopNr) => apiClient.getLines(id, stopNr));
+    domModifier.createSortedStopsDatalist('AllStops', storage.getData('stopsList'));
 }

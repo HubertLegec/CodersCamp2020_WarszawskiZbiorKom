@@ -1,4 +1,15 @@
 export class DOMModifier {
+    constructor(id, stopNr,  getLines){
+        this.id = id;
+        this.stopNr = stopNr;
+        this.getLines = getLines;
+    }
+    btn = document.getElementById("searchStop").addEventListener("click", async () =>{
+        this.removeElementsByClass("elementOfList")
+        let arrOfTransports = await this.getLines(this.id, this.stopNr)
+        console.log(arrOfTransports)
+        this.displayLines(arrOfTransports);
+    });
     //function add two divs (tram/bus list) and append there lines from this stop
     displayLines(arrOfTransports){              
         let parent = document.getElementById('linesList');
