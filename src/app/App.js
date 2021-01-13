@@ -9,4 +9,5 @@ export const App = async ({options}) => {
     const result = await apiClient.getStops(`${options['wawApiAllStops']}${options['wawApiKey']}`);
     storage.storeData('stopsList', result);   
     domModifier.createSortedStopsDatalist('AllStops', storage.getData('stopsList'));
+    domModifier.map();
 }

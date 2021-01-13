@@ -1,3 +1,4 @@
+import {loadMap} from "./Map";
 export class DOMModifier {
 
     createSortedStopsDatalist(datalistId, stopList) {
@@ -12,6 +13,7 @@ export class DOMModifier {
             return option;
         })
         .forEach(opt => datalist.append(opt));
-    }
-        
+    }  
+    
+    map = loadMap;
 }
