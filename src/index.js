@@ -6,4 +6,4 @@ const WAW_API_BASE_URL = process.env.WAW_API_BASE_URL || "https://api.um.warszaw
 
 window.onload = () => App({options: {wawApiBaseUrl: WAW_API_BASE_URL}})
 
-loadMap();
+// loadMap();
