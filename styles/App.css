@@ -22,3 +22,7 @@ body {
 #autoComplete_list li:hover{
     background-color: rgba(0,0,0,.1);
 }
+
+.autoComplete_highlighted{
+    font-weight: bold;
+}

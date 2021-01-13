@@ -27,17 +27,25 @@ export class SearchManager {
                 ).map((stop) => {
                     return list.find((value) => value.match === stop);
                 });
-
                 return filteredResults;
             }
         },
         trigger: {
             event: ["input", "focus"]
         },
+        query: {                             
+            manipulate: (query) => {
+                // remove polish accents/diacritics
+                return query//.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            }
+        },
+        cache: true,
         placeHolder: "Znajdź przystanek",
-        searchEngine: "strict",
+        threshold: 1,
+        searchEngine: "strict", // "loose"
         highlight: true,
-        maxResults: 500,
+        maxResults: 1000,
+        diacritics: false,
         resultItem: {
             content: (data, element) => {
                 // Prepare Value's Key
