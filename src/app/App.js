@@ -10,5 +10,4 @@ export const App = async ({ options }) => {
     storage.storeData('stopsList', query);
     const searchManager = new SearchManager('zbiorkom-app');
     searchManager.createInput();
-    searchManager.autoComplete();
 }

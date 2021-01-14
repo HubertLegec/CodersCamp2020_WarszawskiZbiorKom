@@ -27,7 +27,7 @@ describe('SearchManager testing', () => {
 
             searchManager.createInput();
 
-            expect(getByRole(container, 'textbox')).toBeInTheDocument();
+            expect(getByRole(container, 'combobox')).toBeInTheDocument();
         })
 
         test('created input id equals "autoComplete"', () => {
@@ -37,9 +37,9 @@ describe('SearchManager testing', () => {
 
             searchManager.createInput();
 
-            expect(getByRole(container, 'textbox').id).toEqual('autoComplete');
+            expect(getByRole(container, 'combobox').id).toEqual('autoComplete');
         })
 
     })
-    
+
 })

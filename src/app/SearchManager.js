@@ -26,6 +26,7 @@ export class SearchManager {
         input.addEventListener("results", (event) => { return event });
 
         document.getElementById(this.InputContainerId).append(input);
+        this.autoComplete();
     }
 
     // The autoComplete.js Engine instance creator
@@ -81,12 +82,14 @@ export class SearchManager {
                 const key = Object.keys(data.value).find(
                     (key) => data.value[key] === element.innerText
                 );
+
                 // Modify Results Item
                 element.style = "display: flex; justify-content: space-between;";
                 element.innerHTML = `<span style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
                 ${element.innerHTML}</span>
                 <span style="display: flex; align-items: center; font-size: 13px; font-weight: 100; text-transform: uppercase; color: rgba(0,0,0,.2);">
                 Nazwa przystanku</span>`;
+                console.log(element);
             }
         },
         noResults: (dataFeedback, generateList) => {
