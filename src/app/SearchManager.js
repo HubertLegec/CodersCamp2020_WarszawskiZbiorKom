@@ -1,7 +1,15 @@
 import AutoComplete from '../../node_modules/@tarekraafat/autocomplete.js/dist/js/autoComplete';
+import {StorageManager} from './StorageManager';
 
+let input = document.createElement('input');
+input.id = 'autoComplete';
+input.type = 'text';
+input.addEventListener("results", (event) => {
+    return event;
+});
+document.querySelector('#zbiorkom-app').append(input);
 export class SearchManager {
-
+  
     // The autoComplete.js Engine instance creator
     searchManager = new AutoComplete({
         name: "Stops",
@@ -11,15 +19,16 @@ export class SearchManager {
                 document
                     .querySelector("#autoComplete")
                     .setAttribute("placeholder", "Znajdź przystanek");
-
-                let data = await JSON.parse(window.localStorage.stopsList);
-                data = await data
-                .map(s => s = {...s, ...{Nazwa : `${s.name} ${s.number}`}})
-                .sort((s1, s2) => s1.Nazwa.localeCompare(s2.Nazwa))
+                
+                const storageManager = new StorageManager();
+                const storageData = storageManager.getData('stopsList');
+                let data = await storageData
+                .map(s => s = {...s, fullName : `${s.name} ${s.number}`})
+                .sort((s1, s2) => s1.fullName.localeCompare(s2.fullName))
                 // Returns Fetched data
                 return data;
             },
-            key: ["Nazwa"],
+            key: ["fullName"],
             results: (list) => {
                 // Filter duplicates
                 const filteredResults = Array.from(
@@ -57,7 +66,7 @@ export class SearchManager {
                 element.innerHTML = `<span style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
                 ${element.innerHTML}</span>
                 <span style="display: flex; align-items: center; font-size: 13px; font-weight: 100; text-transform: uppercase; color: rgba(0,0,0,.2);">
-                ${key}</span>`;
+                Nazwa przystanku</span>`;
             }
         },
         noResults: (dataFeedback, generateList) => {
