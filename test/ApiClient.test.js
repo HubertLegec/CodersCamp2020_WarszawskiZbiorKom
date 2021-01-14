@@ -9,9 +9,10 @@ describe('ApiClient testing', () => {
         })
 
         test.only('returns array of lines', async () => {
-            fetch.mockOnce(mockResponse)
+            fetch.mockOnce(JSON.stringify(mockResponse));
             const apiClient = new ApiClient('https://api.um.warszawa.pl/api/', 'aaa');
-            expect(await apiClient.getLines('7013', '01')).toEqual(['123', '125', '138', '136', '147', '166', '202', '509', 'N02', 'N03', 'N21', 'N71']);            
+            const returnedLines = await apiClient.getLines("7013", "01")
+            expect(returnedLines).toEqual(['123', '138', '166', '509', 'N02']);            
         });
 
     })

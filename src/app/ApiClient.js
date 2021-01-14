@@ -1,13 +1,4 @@
 import {Stop} from './Stop';
-
-export class createURL{
-    //function create endpointURL which will be concatenned with baseURL
-    createEndpointLines(id, stopNr, api){
-        let endpointUrl = `action/dbtimetable_get/?id=88cd555f-6f31-43ca-9de4-66c479ad5942&busstopId=${id}&busstopNr=${stopNr}&apikey=${api}`;
-        return endpointUrl
-    }
-    
-}
 export class ApiClient {
     constructor(baseUrl, apiKey){
         this.baseUrl = baseUrl;
@@ -27,12 +18,9 @@ export class ApiClient {
     async getLines(id, stopNr){
         let endpointUrl = `action/dbtimetable_get/?id=88cd555f-6f31-43ca-9de4-66c479ad5942&busstopId=${id}&busstopNr=${stopNr}&apikey=${this.apiKey}`
         const endpoint = `${this.baseUrl}${endpointUrl}`
-        console.log(endpoint)
         try{
             const result = await fetch(endpoint);
-            
             const data = await result.json();
-            console.log(data)
             //function display tram and bus div and insert there list of lines from this stop
             return data['result'].map(el => el['values'][0]['value']);
             }

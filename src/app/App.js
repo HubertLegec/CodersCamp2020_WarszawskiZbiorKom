@@ -1,11 +1,9 @@
 import {ApiClient} from './ApiClient';
-import {createURL} from './ApiClient';
 import {StorageManager} from './StorageManager';
 import {DOMModifier} from './DOMModifier';
 export const App = async ({options}) => {
     const storage = new StorageManager();
     const apiClient = new ApiClient(options['wawApiBaseUrl'], options['wawApiKey']);
-    const createUrl = new createURL();
     const result = await apiClient.getStops(`${options['wawApiAllStops']}${options['wawApiKey']}`);
     storage.storeData('stopsList', result);   
     const obj = {

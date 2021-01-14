@@ -1,60 +1,97 @@
 import {DOMModifier} from '../src/app/DOMModifier';
-import {getByDisplayValue, getByTestId, getByRole} from '@testing-library/dom';
 import '@testing-library/jest-dom/extend-expect';
 
-function createMockInputWithDatalist() {
+describe('Test DOMModifier class', () => {
 
-    const div = document.createElement('div');
-    div.innerHTML = `
-    <input type="search" list="AllStops" name="FindStop" id="FindStop">
-    <datalist id="AllStops" data-testid="datalist"></datalist>
-  `;
+    function createDivWithLists() {
+
+        const div = document.createElement('div');
+        div.classList.add('linesList')  
+        div.id = "linesList" 
+        return div;
+    }
     
-    return div;
-}
 
-describe('Testing createStopsDatalist function', () => {
-
-    beforeEach(() => {
-        document.body.innerHTML = '';
-    })
-    
-    test('creates options for every array element', () => {
+    describe('Test creating tram/bus list', () => {
         const domModifier = new DOMModifier();
-        const stopsMockList = [{
-            name: 'Marszałkowska',
-            number: '01'
-        }, {
-            name: 'al.Zieleniecka',
-            number: '01'
-        }, {
-            name: 'Ząbkowska',
-            number: '02'
-        }];
+        beforeEach(() => {
+            document.body.innerHTML = '';
+        })
+        
+        test('creates options for every array element', () => {
+            const domModifier = new DOMModifier();    
+            document.body.append(createDivWithLists());
+        
+            domModifier.displayLines(["109", "235" , "509"]);
+            
+            expect(document.getElementById("linesList").childElementCount).toEqual(2);
+        
+        })
     
-        const container = document.body;
-        container.append(createMockInputWithDatalist());
-    
-        domModifier.createSortedStopsDatalist('AllStops', stopsMockList);
-    
-        expect(getByTestId(container, 'datalist').childElementCount).toEqual(3);
-    
+
     })
-    
-    test('creates option text from name and number properties', () => {
+
+    describe('Test append child to bus list', () => {
         const domModifier = new DOMModifier();
-        const stopsMockList = [{
-            name: 'Marszałkowska',
-            number: '01'
-        }];
-    
-        const container = document.body;
-        container.append(createMockInputWithDatalist());
-    
-        domModifier.createSortedStopsDatalist('AllStops', stopsMockList);
-    
-        expect(getByRole(container, 'option', {hidden: true}).value).toEqual('Marszałkowska 01');
+        beforeEach(() => {
+            document.body.innerHTML = '';
+        })
+        
+        test('creates options for every array element', () => {
+            const domModifier = new DOMModifier();    
+            document.body.append(createDivWithLists());
+        
+            domModifier.displayLines(["109", "235" , "N03"]);
+            
+            expect(document.querySelectorAll('[data-testid="bus"]').length).toEqual(3);
+        })
     })
 
-})
+    describe('Test append child to tram list', () => {
+        const domModifier = new DOMModifier();
+        beforeEach(() => {
+            document.body.innerHTML = '';
+        })
+        
+        test('creates options for every array element', () => {
+            const domModifier = new DOMModifier();    
+            document.body.append(createDivWithLists());
+        
+            domModifier.displayLines(["3", "13" , "25"]);
+        
+            expect(document.querySelectorAll('[data-testid="tram"]').length).toEqual(3);
+        })
+    })
 
+    describe('Testing removeElementByClass function', () => {
+        
+        test('creates p, div and headers with "randomClass"', () => {
+           
+        beforeEach(() => {
+            for(var i=0; i<10; i++)
+            {
+                const para = document.createElement('p');
+                para.classList.add('randomClass');
+                document.body.appendChild(para);
+
+                const div = document.createElement('div');
+                div.classList.add('randomClass');
+                document.body.appendChild(div);
+
+                const head = document.createElement('h1');
+                head.classList.add('randomClass');
+                document.body.appendChild(head);
+            }
+        })
+        
+        const domModifier = new DOMModifier();
+        domModifier.removeElementsByClass('randomClass');
+
+        let elementsWithGivenClass = document.getElementsByClassName('randomClass');
+        expect(elementsWithGivenClass.length).toEqual(0);
+
+        })
+
+    })
+
+});
