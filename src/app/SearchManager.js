@@ -1,20 +1,40 @@
 import AutoComplete from '../../node_modules/@tarekraafat/autocomplete.js/dist/js/autoComplete';
 import {StorageManager} from './StorageManager';
 
-let input = document.createElement('input');
+
+/*let input = document.createElement('input');
 input.id = 'autoComplete';
 input.type = 'text';
+
 input.addEventListener("results", (event) => {
     return event;
 });
-document.querySelector('#zbiorkom-app').append(input);
+
+document.querySelector('#zbiorkom-app').append(input);*/
+
 export class SearchManager {
-  
+
+    constructor(InputContainerId) {
+        this.InputContainerId = InputContainerId;
+    }
+
+    createInput() {
+        let input = document.createElement('input');
+        input.id = 'autoComplete';
+        input.type = 'text';
+
+        input.addEventListener("results", (event) => { return event });
+
+        document.getElementById(this.InputContainerId).append(input);
+    }
+
     // The autoComplete.js Engine instance creator
-    searchManager = new AutoComplete({
+    autoComplete() { 
+        return new AutoComplete({
         name: "Stops",
         data: {
             src: async function () {
+                
                 // Loading placeholder text
                 document
                     .querySelector("#autoComplete")
@@ -93,5 +113,8 @@ export class SearchManager {
             console.log(feedback.selection.value);
         }
     });
+}
+    
+
 
 }

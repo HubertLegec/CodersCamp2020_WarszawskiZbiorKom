@@ -8,5 +8,7 @@ export const App = async ({ options }) => {
     const apiClient = new ApiClient(options['wawApiBaseUrl']);
     const query = await apiClient.getStops(`${options['wawApiAllStops']}${options['wawApiKey']}`);
     storage.storeData('stopsList', query);
-    const autoComplete = await new SearchManager();
+    const searchManager = new SearchManager('zbiorkom-app');
+    searchManager.createInput();
+    searchManager.autoComplete();
 }
