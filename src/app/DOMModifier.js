@@ -3,12 +3,19 @@ export class DOMModifier {
         this.id = id;
         this.stopNr = stopNr;
         this.getLines = getLines;
+        this.btn = document.getElementById("searchStop");
+        window.onload = this.init;
     }
-    btn = document.getElementById("searchStop").addEventListener("click", async () =>{
-        this.removeElementsByClass("elementOfList")
-        let arrOfTransports = await this.getLines(this.id, this.stopNr)
-        this.displayLines(arrOfTransports);
-    });
+    
+    init()
+    {
+        this.btn.addEventListener("click", async () =>{
+            this.removeElementsByClass("elementOfList")
+            let arrOfTransports = await this.getLines(this.id, this.stopNr)
+            this.displayLines(arrOfTransports);
+        });
+    }
+
     //function add two divs (tram/bus list) and append there lines from this stop
     displayLines(arrOfTransports){              
         let parent = document.getElementById('linesList');
