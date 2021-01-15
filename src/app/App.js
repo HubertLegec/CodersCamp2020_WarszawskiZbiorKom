@@ -1,6 +1,6 @@
 import {ApiClient} from './ApiClient';
 import {StorageManager} from './StorageManager';
-import {DOMModifier} from './DOMModifier';
+import {StopLinesManager} from './StopLinesManager';
 export const App = async ({options}) => {
     const storage = new StorageManager();
     const apiClient = new ApiClient(options['wawApiBaseUrl'], options['wawApiKey']);
@@ -10,6 +10,8 @@ export const App = async ({options}) => {
         id: "7013",
         stopNr: "01",
     }
-    const domModifier = new DOMModifier(obj.id, obj.stopNr, (id, stopNr) => apiClient.getLines(id, stopNr));
-    domModifier.createSortedStopsDatalist('AllStops', storage.getData('stopsList'));
+    
+    const listOfLines = await apiClient.getLines(obj.id, obj.stopNr);
+    const stopLinesManager = new StopLinesManager('zbiorkom-app', listOfLines);
+    stopLinesManager.createButton();
 }

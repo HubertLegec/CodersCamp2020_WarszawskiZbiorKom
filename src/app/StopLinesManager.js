@@ -1,19 +1,33 @@
-export class DOMModifier {
-    constructor(id, stopNr, getLines){
-        this.id = id;
-        this.stopNr = stopNr;
-        this.getLines = getLines;
-        this.btn = document.getElementById("searchStop");
-        window.onload = this.init;
+export class StopLinesManager {
+    
+    constructor(buttonContainerId, arrOfTransports){
+        this.buttonContainerId = buttonContainerId;
+        this.arrOfTransports = arrOfTransports;
     }
     
-    init()
-    {
-        this.btn.addEventListener("click", async () =>{
+    createButton() {
+        const button = document.createElement('button')
+        button.setAttribute('type', 'submit');
+        button.id = 'searchStop';
+        button.innerText = 'Szukaj linii';
+
+        button.addEventListener("click", async () =>{
+            this.createLinesTable();
             this.removeElementsByClass("elementOfList")
-            let arrOfTransports = await this.getLines(this.id, this.stopNr)
-            this.displayLines(arrOfTransports);
+            this.displayLines(this.arrOfTransports);
         });
+
+        document.getElementById(this.buttonContainerId).append(button);
+        return button;
+    }
+
+    createLinesTable() {
+        const linesDiv = document.createElement('div');
+        linesDiv.id = 'linesList';
+        linesDiv.classList.add('linesList');
+
+        document.getElementById(this.buttonContainerId).append(linesDiv);
+        return linesDiv;
     }
 
     //function add two divs (tram/bus list) and append there lines from this stop
@@ -64,7 +78,6 @@ export class DOMModifier {
             elements[0].parentNode.removeChild(elements[0]);
         }        
     }
-
 
     createSortedStopsDatalist(datalistId, stopList) {
             // creating datalist options
