@@ -1,3 +1,26 @@
 body {
     font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
+div.list{
+    width: 180px;
+    height: 300px;
+    border: 2px solid black;
+}
+div.list p{
+    text-align: center;
+    display: block;
+    width: 180px;
+    height: 20px;
+    line-height: 20px;
+    margin: 8px;
+    margin: 0 auto;
+}
+div.linesList{
+    display: flex;
+    flex-direction: row;
+}
+
