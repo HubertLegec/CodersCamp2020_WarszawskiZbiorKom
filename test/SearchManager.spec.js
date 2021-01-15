@@ -1,6 +1,7 @@
 import { SearchManager } from '../src/app/SearchManager';
 import { getByRole, waitFor, fireEvent, queryByText, findByText } from '@testing-library/dom';
 import '@testing-library/jest-dom';
+import { async } from 'regenerator-runtime';
 
 //przy imporcie searchmanagera jest błąd 'Missing class properties transform'
 describe('SearchManager', () => {
@@ -23,7 +24,7 @@ describe('SearchManager', () => {
 
     searchManager.createInput();
 
-    expect(getByRole(container, 'textbox')).toBeInTheDocument();
+    expect(getByRole(container, 'combobox')).toBeInTheDocument();
   });
 
   test('created input id equals "autoComplete"', () => {
@@ -31,7 +32,7 @@ describe('SearchManager', () => {
 
     searchManager.createInput();
 
-    expect(getByRole(container, 'textbox').id).toEqual('autoComplete');
+    expect(getByRole(container, 'combobox').id).toEqual('autoComplete');
   });
 
   test('displays suggestions', async () => {
@@ -48,6 +49,37 @@ describe('SearchManager', () => {
     const matchingStop = await findByText(container, containsIgnoringHtmlTags('Marszałkowska 01'));
     expect(matchingStop).toBeInTheDocument();
     await waitFor(() => expect(queryByText(container, containsIgnoringHtmlTags('Puławska 02'))).not.toBeInTheDocument());
+  });
+
+  test('changes value of input if suggestion selected', async () => {
+    const availableStops = [
+        { name: 'Marszałkowska', number: '01' },
+        { name: 'Puławska', number: '02' },
+    ];
+    const searchManager = new SearchManager('zbiorkom-app', () => availableStops);
+    const input = searchManager.createInput();
+
+    fireEvent.focus(input);
+    fireEvent.input(input, {target: {value: 'Mar'}});
+    const option = await findByText(container, containsIgnoringHtmlTags('Marszałkowska 01'));
+    fireEvent.click(option);
+
+    expect(input.value).toEqual('Marszałkowska 01');
+  })
+
+  test('displays "Brak wyników" if no match found', async () => {
+    const availableStops = [
+        { name: 'Marszałkowska', number: '01' },
+        { name: 'Puławska', number: '02' },
+    ];
+    const searchManager = new SearchManager('zbiorkom-app', () => availableStops);
+    const input = searchManager.createInput();
+
+    fireEvent.focus(input);
+    fireEvent.input(input, {target: { value: 'asdad'}});
+
+    const noResults = await findByText(container, containsIgnoringHtmlTags('Brak wyników'));
+    expect(noResults).toBeInTheDocument();
   });
 
   function containsIgnoringHtmlTags(text) {
