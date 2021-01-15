@@ -21,7 +21,7 @@ export class SearchManager {
 
   // The autoComplete.js Engine instance creator
   autoComplete() {
-    return new AutoComplete({
+    const autoComplete = new AutoComplete({
       name: 'Stops',
       data: {
         src: async () => {
@@ -76,14 +76,14 @@ export class SearchManager {
       },
       noResults: (dataFeedback, generateList) => {
         // Generate autoComplete List
-        generateList(this.searchManager, dataFeedback, dataFeedback.results);
+        generateList(autoComplete, dataFeedback, dataFeedback.results);
         // No Results List Item
         const result = document.createElement('li');
         result.setAttribute('class', 'no_result');
         result.setAttribute('tabindex', '1');
-        result.innerHTML = `<span>Brak wyników dla zapytania "${dataFeedback.query}"</span>`;
+        result.innerHTML = `<span>Brak wyników</span>`;
         document
-          .querySelector(`#${this.searchManager.resultsList.idName}`)
+          .querySelector(`#${autoComplete.resultsList.idName}`)
           .appendChild(result);
       },
       onSelection: (feedback) => {
@@ -95,8 +95,9 @@ export class SearchManager {
         // Replace Input value with the selected value
         document.querySelector('#autoComplete').value = selection;
         // Console log autoComplete data feedback
-        console.log(feedback.selection.value);
+        return feedback.selection.value;
       },
     });
+    return autoComplete;
   }
 }
