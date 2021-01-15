@@ -6,8 +6,8 @@ import { SearchManager } from './SearchManager';
 export const App = async ({ options }) => {
     const storage = new StorageManager();
     const apiClient = new ApiClient(options['wawApiBaseUrl']);
-    const query = await apiClient.getStops(`${options['wawApiAllStops']}${options['wawApiKey']}`);
-    storage.storeData('stopsList', query);
-    const searchManager = new SearchManager('zbiorkom-app');
+    const stopsList = await apiClient.getStops(`${options['wawApiAllStops']}${options['wawApiKey']}`);
+    storage.storeData('stopsList', stopsList);
+    const searchManager = new SearchManager('zbiorkom-app', () => stopsList);
     searchManager.createInput();
 }
