@@ -15,5 +15,7 @@ export class DOMModifier {
         .forEach(opt => datalist.append(opt));
     }  
     
-    map = loadMap;
+    initializeMap() {
+        loadMap();
+    };
 }
