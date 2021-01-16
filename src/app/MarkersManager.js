@@ -19,10 +19,10 @@ export class Marker{
     addVehicleMarker(map, vehicles){
         const vehicleIcon = L.icon({iconUrl: vehicleIconUrl, iconSize: [24, 24]});
         let vehicleMarkers = [];
-
-        return vehicleMarkers = vehicles.forEach(vehicle =>
-             new L.marker([vehicle.lat,vehicle.lng], {icon: vehicleIcon})
-            .addTo(map));
+        vehicles.forEach(vehicle =>
+            vehicleMarkers.push(new L.marker([vehicle.lat,vehicle.lng], {icon: vehicleIcon})
+            .addTo(map)));
+        return vehicleMarkers;
     }
     
     removeMarkers(markers){
