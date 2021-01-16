@@ -6,7 +6,7 @@ import {Marker} from './MarkersManager';
 
 export const App = async ({options}) => {
     const storage = new StorageManager();
-    const apiClient = new ApiClient(options['wawApiBaseUrl'], options['wawApiKey']);
+    const apiClient = new ApiClient(options['wawApiBaseUrl'], options['wawApiVehicles'], options['wawApiKey']);
     const map = new Map();
     const marker = new Marker();
     
@@ -27,4 +27,7 @@ export const App = async ({options}) => {
     stopLinesManager.createButton();
     const wawMap = map.initializeMap();
     marker.addBusStopMarker(wawMap, obj, listOfLines);
+
+    let vehicles = await apiClient.getVehicles(1, 112);
+    let vehicleMarkers = marker.addVehicleMarker(wawMap, vehicles);
 }
