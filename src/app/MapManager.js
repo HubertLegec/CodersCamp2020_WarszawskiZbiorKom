@@ -16,7 +16,7 @@ export class MapManager {
         const busStopIcon = L.icon({iconUrl: busStopIconUrl, iconSize: [32, 32]});
         let busStopMarker;
         if(busStop.lat != "null" && busStop.lng != "null"){
-            map.flyTo([busStop.lat,busStop.lng], 18);
+            map.flyTo([busStop.lat,busStop.lng], 17);
             busStopMarker = new L.marker([busStop.lat,busStop.lng], {icon: busStopIcon})
             .addTo(map)
             .bindPopup(`${busStop.name} ${busStop.number} <br> Lines: ${listOfLines}`);
@@ -38,7 +38,7 @@ export class MapManager {
         return vehicleMarkers;
     }
     
-    removeMarkers(markers){
-        markers.forEach(marker => map.removeLayer(marker));
+    removeMarker(map, marker){
+        map.removeLayer(marker);
     }
 }
