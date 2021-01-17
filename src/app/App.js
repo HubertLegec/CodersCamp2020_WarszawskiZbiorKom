@@ -3,14 +3,15 @@ import {StorageManager} from './StorageManager';
 import {StopLinesManager} from './StopLinesManager';
 import {Map} from "./Map";
 import {SearchManager} from './SearchManager';
-export const App = async ({options}) => {
+
+export const App = ({options}) => {
     const storage = new StorageManager();
     const apiClient = new ApiClient(options['wawApiBaseUrl'], options['wawApiKey']);
     const map = new Map();
-    const stopsList = await apiClient.getStops(`${options['wawApiAllStops']}${options['wawApiKey']}`);
-    storage.storeData('stopsList', stopsList);
+    apiClient.getStops(`${options['wawApiAllStops']}${options['wawApiKey']}`)
+      .then(stopsList => storage.storeData('stopsList', stopsList));
 
-    const searchManager = new SearchManager('zbiorkom-app', () => stopsList);
+    const searchManager = new SearchManager('zbiorkom-app', () => storage.getData('stopsList'));
     searchManager.createInput();
     searchManager.addSelectionHandler(async (selection) => {
         const listOfLines = await apiClient.getLines(selection.id, selection.number);
