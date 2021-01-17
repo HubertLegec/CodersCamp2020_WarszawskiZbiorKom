@@ -57,20 +57,30 @@ export class StopLinesManager {
             let para = document.createElement("p");
             para.classList.add("elementOfList");
             para.innerHTML = element;
-            if (element >= 100 || element[0] === "N" || element[0] === "L" || element[0] === "E") {
+            if (this.verifyVehicleType(element) =='bus') {
                 para.setAttribute("data-testid", "bus")
                 busList.appendChild(para);
                 } 
-            else if(element > 0 && element <100) {
+            else if(this.verifyVehicleType(element) == 'tram') {
                 para.setAttribute("data-testid", "tram")
                 tramList.appendChild(para);
                 }
             else {
                 return null
             }
-        });
-        
+        });  
     }
+
+    verifyVehicleType(line){
+        if (line >= 100 || line[0] === "N" || line[0] === "L" || line[0] === "E"){
+            return 'bus';
+        } else if(line > 0 && line <100){
+            return 'tram';
+        } else {
+            return 'other';
+        }
+    }
+
     //function remove lines of old search
     removeElementsByClass(className){
         var elements = document.getElementsByClassName(className);         
