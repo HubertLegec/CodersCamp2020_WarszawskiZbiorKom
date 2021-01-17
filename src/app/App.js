@@ -1,12 +1,12 @@
 import {ApiClient} from './ApiClient';
 import {StorageManager} from './StorageManager';
 import {StopLinesManager} from './StopLinesManager';
-import {Map} from './Map';
+import {MapManager} from './MapManager';
 
 export const App = async ({options}) => {
     const storage = new StorageManager();
     const apiClient = new ApiClient(options['wawApiBaseUrl'], options['wawApiVehicles'], options['wawApiKey']);
-    const map = new Map();
+    const map = new MapManager();
     
     const result = await apiClient.getStops(`${options['wawApiAllStops']}${options['wawApiKey']}`);
 

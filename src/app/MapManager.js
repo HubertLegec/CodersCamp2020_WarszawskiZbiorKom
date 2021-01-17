@@ -1,8 +1,8 @@
 import busStopIconUrl from '../img/bus-stop.png';
 import vehicleIconUrl from '../img/bus.png';
 
-export class Map {
-
+export class MapManager {
+    
     initializeMap(){
         const L = require('leaflet');
         const map = L.map('map').setView([52.2297700, 21.0117800], 12);
@@ -15,12 +15,10 @@ export class Map {
     addBusStopMarker(map, busStop, listOfLines){ 
         const busStopIcon = L.icon({iconUrl: busStopIconUrl, iconSize: [32, 32]});
         let busStopMarker;
-
-        if(busStop.lat && busStop.lng != "null"){
+        if(busStop.lat != "null" && busStop.lng != "null"){
             busStopMarker = new L.marker([busStop.lat,busStop.lng], {icon: busStopIcon})
             .addTo(map)
-            .bindPopup(`${busStop.name} ${busStop.number} <br> Lines: ${listOfLines}`)
-            .openPopup();
+            .bindPopup(`${busStop.name} ${busStop.number} <br> Lines: ${listOfLines}`);
         }
         return busStopMarker;
     };
