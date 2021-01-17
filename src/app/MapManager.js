@@ -33,7 +33,8 @@ export class MapManager {
         vehicles.forEach(vehicle => {
             if (!vehicleMarkers.hasOwnProperty(vehicle.vehicleNumber)){
                 vehicleMarkers[vehicle.vehicleNumber] = L.marker([vehicle.lat,vehicle.lng], {icon: vehicleIcon})
-                .addTo(map);
+                .addTo(map)
+                .bindPopup(`${vehicle.line}`);
             } else {
                 vehicleMarkers[vehicle.vehicleNumber].setLatLng([vehicle.lat, vehicle.lng]);
             }
