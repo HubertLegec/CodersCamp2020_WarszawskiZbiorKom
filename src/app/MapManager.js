@@ -40,7 +40,7 @@ export class MapManager {
         })
         if(zoomBoundsToBeSet){
             map.flyToBounds(this.findBounds(vehicleMarkers));
-            setBounds = false;
+            zoomBoundsToBeSet = false;
         }
         return vehicleMarkers;
     }
