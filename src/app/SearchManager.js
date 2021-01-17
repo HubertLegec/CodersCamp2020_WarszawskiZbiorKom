@@ -19,6 +19,10 @@ export class SearchManager {
     return input;
   }
 
+  addSelectionHandler(handler) {
+    this.selectionHandler = handler;
+  }
+
   // The autoComplete.js Engine instance creator
   autoComplete() {
     const autoComplete = new AutoComplete({
@@ -86,7 +90,7 @@ export class SearchManager {
           .querySelector(`#${autoComplete.resultsList.idName}`)
           .appendChild(result);
       },
-      onSelection: (feedback) => {
+      onSelection: async (feedback) => {
         document.querySelector('#autoComplete').blur();
         // Prepare User's Selected Value
         const selection = feedback.selection.value[feedback.selection.key];
@@ -95,7 +99,7 @@ export class SearchManager {
         // Replace Input value with the selected value
         document.querySelector('#autoComplete').value = selection;
         // Console log autoComplete data feedback
-        return feedback.selection.value;
+        this.selectionHandler(feedback.selection.value);
       },
     });
     return autoComplete;

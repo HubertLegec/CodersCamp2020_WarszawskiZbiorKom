@@ -43,7 +43,7 @@ div.list p{
     margin: 8px;
     margin: 0 auto;
 }
-div.linesList{
+div#linesList{
     display: flex;
     flex-direction: row;
 }

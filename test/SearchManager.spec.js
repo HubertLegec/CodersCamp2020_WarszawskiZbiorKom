@@ -58,6 +58,8 @@ describe('SearchManager', () => {
     ];
     const searchManager = new SearchManager('zbiorkom-app', () => availableStops);
     const input = searchManager.createInput();
+    searchManager.addSelectionHandler(() =>{});
+
 
     fireEvent.focus(input);
     fireEvent.input(input, {target: {value: 'Mar'}});

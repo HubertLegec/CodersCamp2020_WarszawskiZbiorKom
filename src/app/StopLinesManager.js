@@ -1,32 +1,18 @@
 export class StopLinesManager {
     
-    constructor(buttonContainerId, arrOfTransports){
-        this.buttonContainerId = buttonContainerId;
+    constructor(linesTableContainerId, arrOfTransports){
+        this.linesTableContainerId = linesTableContainerId;
         this.arrOfTransports = arrOfTransports;
-    }
-    
-    createButton() {
-        const button = document.createElement('button')
-        button.setAttribute('type', 'submit');
-        button.id = 'searchStop';
-        button.innerText = 'Szukaj linii';
-
-        button.addEventListener("click", async () =>{
-            this.createLinesTable();
-            this.removeElementsByClass("elementOfList")
-            this.displayLines(this.arrOfTransports);
-        });
-
-        document.getElementById(this.buttonContainerId).append(button);
-        return button;
     }
 
     createLinesTable() {
+        this.removeLinesTable('linesList');
+
         const linesDiv = document.createElement('div');
         linesDiv.id = 'linesList';
-        linesDiv.classList.add('linesList');
+        document.getElementById(this.linesTableContainerId).append(linesDiv);
+        this.displayLines(this.arrOfTransports)
 
-        document.getElementById(this.buttonContainerId).append(linesDiv);
         return linesDiv;
     }
 
@@ -58,11 +44,9 @@ export class StopLinesManager {
             para.classList.add("elementOfList");
             para.innerHTML = element;
             if (element >= 100 || element[0] === "N" || element[0] === "L" || element[0] === "E") {
-                para.setAttribute("data-testid", "bus")
                 busList.appendChild(para);
                 } 
             else if(element > 0 && element <100) {
-                para.setAttribute("data-testid", "tram")
                 tramList.appendChild(para);
                 }
             else {
@@ -72,25 +56,11 @@ export class StopLinesManager {
         
     }
     //function remove lines of old search
-    removeElementsByClass(className){
-        var elements = document.getElementsByClassName(className);         
-        while(elements.length > 0){
-            elements[0].parentNode.removeChild(elements[0]);
-        }        
-    }
-
-    createSortedStopsDatalist(datalistId, stopList) {
-            // creating datalist options
-        const datalist = document.getElementById(datalistId);
-
-        stopList.map(s => `${s.name} ${s.number}`)
-        .sort((s1, s2) => s1.localeCompare(s2))
-        .map(s => {
-            const option = document.createElement('option');
-            option.value = s;
-            return option;
-        })
-        .forEach(opt => datalist.append(opt));
+    removeLinesTable(id){
+        const element = document.getElementById(id);
+        if(element){
+            element.parentNode.removeChild(element);
+        }         
     }
         
 }
