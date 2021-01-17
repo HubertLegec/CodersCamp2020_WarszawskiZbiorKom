@@ -3,7 +3,7 @@ import { Map } from '../src/app/Map';
 describe('Map testing', () => {
 
     beforeEach(() => {
-        document.body.innerHTML = ''; 
+        document.body.innerHTML = '';
     })
 
     test('initializeMap creates map inside div with "map" id', () => {

@@ -42,6 +42,7 @@
     "cross-env": "^7.0.3",
     "cssnano": "^4.1.10",
     "fetch-mock-jest": "^1.5.1",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^26.4.2",
     "jest-fetch-mock": "^3.0.3",
     "jest-localstorage-mock": "^2.4.6",
@@ -58,6 +59,9 @@
       "json",
       "ts"
     ],
+    "moduleNameMapper": {
+      ".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "identity-obj-proxy"
+    },
     "testRegex": "(spec|test)[.]js",
     "coverageDirectory": "../coverage",
     "setupFiles": [
