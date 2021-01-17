@@ -1,3 +1,5 @@
+import 'leaflet/dist/leaflet.css';
+
 export class Map {
 
     initializeMap(){
