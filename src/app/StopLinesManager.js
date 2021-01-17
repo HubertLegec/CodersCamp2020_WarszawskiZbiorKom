@@ -58,11 +58,9 @@ export class StopLinesManager {
             para.classList.add("elementOfList");
             para.innerHTML = element;
             if (this.verifyVehicleType(element) =='bus') {
-                para.setAttribute("data-testid", "bus")
                 busList.appendChild(para);
                 } 
             else if(this.verifyVehicleType(element) == 'tram') {
-                para.setAttribute("data-testid", "tram")
                 tramList.appendChild(para);
                 }
             else {
