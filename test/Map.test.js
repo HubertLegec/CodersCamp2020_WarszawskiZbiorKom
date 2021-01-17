@@ -1,4 +1,4 @@
-import { Map } from '../src/app/Map';
+import { MapManager } from '../src/app/MapManager';
 
 describe('Map testing', () => {
 
@@ -10,7 +10,7 @@ describe('Map testing', () => {
         const div = document.createElement('div');
         div.id = 'map';
         document.body.append(div);
-        const map = new Map();
+        const map = new MapManager();
         const mapContainer = document.getElementById('map');
 
         map.initializeMap();
