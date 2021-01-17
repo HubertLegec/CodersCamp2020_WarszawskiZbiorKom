@@ -23,13 +23,17 @@ export class MapManager {
         return busStopMarker;
     };
 
-    addVehicleMarker(map, vehicles){
+    setVehicleMarkers(map, vehicles, vehicleMarkers){
         const vehicleIcon = L.icon({iconUrl: vehicleIconUrl, iconSize: [24, 24]});
-        let vehicleMarkers = [];
-        vehicles.forEach(vehicle =>
-            vehicleMarkers.push(new L.marker([vehicle.lat,vehicle.lng], {icon: vehicleIcon})
-            .addTo(map))
-        );
+
+        vehicles.forEach(vehicle => {
+            if (!vehicleMarkers.hasOwnProperty(vehicle.vehicleNumber)){
+                vehicleMarkers[vehicle.vehicleNumber] = L.marker([vehicle.lat,vehicle.lng], {icon: vehicleIcon})
+                .addTo(map);
+            } else {
+                vehicleMarkers[vehicle.vehicleNumber].setLatLng([vehicle.lat, vehicle.lng]);
+            }
+        })
         return vehicleMarkers;
     }
     

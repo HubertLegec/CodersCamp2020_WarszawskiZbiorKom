@@ -26,6 +26,10 @@ export const App = async ({options}) => {
     const wawMap = map.initializeMap();
     map.addBusStopMarker(wawMap, obj, listOfLines);
 
-    let vehicles = await apiClient.getVehicles(1, 112);
-    let vehicleMarkers = map.addVehicleMarker(wawMap, vehicles);
+    let vehicleMarkers = [];
+
+    setInterval(async function() {
+            vehicles = await apiClient.getVehicles(1, 112);
+            vehicleMarkers = map.setVehicleMarkers(wawMap, vehicles, vehicleMarkers);
+      }, 5000)
 }
