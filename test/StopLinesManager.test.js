@@ -56,6 +56,12 @@ describe('StopLinesManager', () => {
         );
     })
 
+    test('return correct vehicle type', () => {
+        const data = ["109", "4" , "null"]
+        const stopLinesManager = new StopLinesManager('zbiorkom-app', data);
+        expect(data.map(lineNr => stopLinesManager.verifyVehicleType(lineNr))).toEqual(['bus','tram','other']);
+    })
+
     function containsIgnoringHtmlTags(text) {
         return (content, node) => {
           const hasText = node => node.textContent.indexOf(text) >= 0;
