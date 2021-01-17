@@ -1,4 +1,5 @@
 import {Stop} from './Stop';
+
 export class ApiClient {
     constructor(baseUrl, apiKey){
         this.baseUrl = baseUrl;

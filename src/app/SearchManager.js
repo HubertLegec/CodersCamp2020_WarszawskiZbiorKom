@@ -1,6 +1,4 @@
-import AutoComplete from '../../node_modules/@tarekraafat/autocomplete.js/dist/js/autoComplete';
-import { StorageManager } from './StorageManager';
-
+import AutoComplete from '@tarekraafat/autocomplete.js';
 
 export class SearchManager {
 
