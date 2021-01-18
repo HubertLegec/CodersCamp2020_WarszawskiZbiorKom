@@ -1,8 +1,9 @@
 import {Stop} from './Stop';
-
+import { Vehicle } from './Vehicle';
 export class ApiClient {
-    constructor(baseUrl, apiKey){
+    constructor(baseUrl, vehiclesUrl, apiKey){
         this.baseUrl = baseUrl;
+        this.vehiclesUrl = vehiclesUrl;
         this.apiKey = apiKey;
     }
 
@@ -43,10 +44,39 @@ export class ApiClient {
         
         return Object.keys(allHoursAndMinutes).map(hour => ({hour, minutes: allHoursAndMinutes[hour]})).sort((h1, h2) => h1.hour.localeCompare(h2.hour));
     }
+    
+    async getVehicles(type, line){
+
+        function vehicleTypeApiInput(type) {
+            if(type ==='bus'){
+                return 1;
+            } else if(type ==='tram'){
+                return 2;
+            } else {
+                throw new Error("Unable to track this vehicle");
+            }
+        }
+    
+        const url = `${this.baseUrl}${this.vehiclesUrl}${this.apiKey}&type=${vehicleTypeApiInput(type)}&line=${line}`;
+        const data = await fetch(url)
+            .then(response => response.json())
+            .then(result => result['result']);
+
+        return data.map(element => {
+                return new Vehicle(element['Lines'],
+                    element['VehicleNumber'],
+                    element['Brigade'],
+                    element['Lat'],
+                    element['Lon'],
+                    element['Time'])
+            }) 
+    }
 
 }  
 
 
 
 
+
+    
 

@@ -27,7 +27,6 @@
   "dependencies": {
     "@tarekraafat/autocomplete.js": "^8.2.1",
     "leaflet": "^1.7.1",
-    "regenerator-runtime": "^0.13.7",
     "uuid": "^8.3.0"
   },
   "devDependencies": {
@@ -37,19 +36,31 @@
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/user-event": "^12.2.2",
     "babel-jest": "^26.5.0",
+    "cross-env": "^7.0.3",
+    "fetch-mock-jest": "^1.5.1",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^26.4.2",
     "jest-fetch-mock": "^3.0.3",
     "jest-localstorage-mock": "^2.4.6",
     "parcel": "^1.12.4",
+    "parcel-bundler": "^1.12.4",
     "parcel-plugin-static-files-copy": "^2.5.0",
     "prettier": "^2.1.2",
     "rimraf": "^3.0.2"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
   },
   "jest": {
     "moduleFileExtensions": [
       "js",
       "json"
     ],
+    "moduleNameMapper": {
+      ".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "identity-obj-proxy"
+    },
     "testRegex": "(spec|test)[.]js",
     "coverageDirectory": "../coverage",
     "setupFiles": [
@@ -67,5 +78,8 @@
         "staticOutDir": "static"
       }
     ]
-  }
+  },
+  "browserslist": [
+    "since 2017-06"
+  ]
 }
