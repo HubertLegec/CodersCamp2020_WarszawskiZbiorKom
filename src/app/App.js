@@ -14,7 +14,7 @@ export const App = async ({options}) => {
     let vehicles;
     let interval;
     let vehicleMarkers = [];
-    
+
     apiClient.getStops(`${options['wawApiAllStops']}${options['wawApiKey']}`)
       .then(stopsList => storage.storeData('stopsList', stopsList));
 
@@ -37,18 +37,19 @@ export const App = async ({options}) => {
             vehicles = await apiClient.getVehicles(vehicleType, handler);
             map.setVehicleMarkers(wawMap, vehicles, vehicleMarkers);
             refreshVehiclePosition(handler);
-        }) 
+        })
+
         if(stopMarker !== undefined){
             map.removeMarker(wawMap, stopMarker);
         }
         stopMarker = map.addBusStopMarker(wawMap, selection, listOfLines);
     })
 
-    function refreshVehiclePosition(handler){
+    function refreshVehiclePosition(line){
         clearInterval(interval);
         interval = setInterval(async () => {
             console.log(vehicles);
-            vehicles = await apiClient.getVehicles(vehicleType, handler);
+            vehicles = await apiClient.getVehicles(vehicleType, line);
             vehicleMarkers = map.setVehicleMarkers(wawMap, vehicles, vehicleMarkers);
         }, 5000)
 
