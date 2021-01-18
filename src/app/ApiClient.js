@@ -1,8 +1,9 @@
 import {Stop} from './Stop';
-
+import { Vehicle } from './Vehicle';
 export class ApiClient {
-    constructor(baseUrl, apiKey){
+    constructor(baseUrl, vehiclesUrl, apiKey){
         this.baseUrl = baseUrl;
+        this.vehiclesUrl = vehiclesUrl;
         this.apiKey = apiKey;
     }
 
@@ -26,9 +27,19 @@ export class ApiClient {
         return data['result'].map(el => el['values'][0]['value']);                        
     }
 
-}  
+    async getVehicles(type, line){
+        const url = `${this.baseUrl}${this.vehiclesUrl}${this.apiKey}&type=${type}&line=${line}`;
+        const data = await fetch(url)
+            .then(response => response.json())
+            .then(result => result['result']);
 
-
-
-
-
+        return data.map(element => {
+                return new Vehicle(element['Lines'],
+                    element['VehicleNumber'],
+                    element['Brigade'],
+                    element['Lat'],
+                    element['Lon'],
+                    element['Time'])
+            }) 
+    }
+}
