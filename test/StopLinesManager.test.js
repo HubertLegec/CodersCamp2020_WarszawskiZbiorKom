@@ -7,7 +7,7 @@ describe('StopLinesManager', () => {
 
     function createContainer() {
         const div = document.createElement('div');
-        div.id = "zbiorkom-app"; 
+        div.id = "panel"; 
 
         return div;
     }
@@ -20,7 +20,7 @@ describe('StopLinesManager', () => {
     
     test('creates divs for tram/bus lists', () => {
         const data = [];
-        const stopLinesManager = new StopLinesManager('zbiorkom-app', data);
+        const stopLinesManager = new StopLinesManager('panel', data);
         stopLinesManager.createLinesTable();
 
         const busLine = getByText(container, containsIgnoringHtmlTags('Lista Autobusów'));
@@ -32,7 +32,7 @@ describe('StopLinesManager', () => {
     
     test('creates option for array elements after clicking', () => {
         const data = ["109", "235" , "509"]
-        const stopLinesManager = new StopLinesManager('zbiorkom-app', data);
+        const stopLinesManager = new StopLinesManager('panel', data);
         stopLinesManager.createLinesTable();  
         
         data.forEach(nr => 
@@ -43,7 +43,7 @@ describe('StopLinesManager', () => {
     test('removes linesTable and creates new if linesTable existed', () => {
         const data1 = ["105", "312", "504", "113"];
         const data2 = ["102", "606"];
-        const stopLinesManager = new StopLinesManager('zbiorkom-app', data1);
+        const stopLinesManager = new StopLinesManager('panel', data1);
 
         stopLinesManager.createLinesTable();
         stopLinesManager.arrOfTransports = data2;
@@ -58,7 +58,7 @@ describe('StopLinesManager', () => {
 
     test('return correct vehicle type', () => {
         const data = ["109", "4" , "null"]
-        const stopLinesManager = new StopLinesManager('zbiorkom-app', data);
+        const stopLinesManager = new StopLinesManager('panel', data);
         expect(data.map(lineNr => stopLinesManager.verifyVehicleType(lineNr))).toEqual(['bus','tram','other']);
     })
 
