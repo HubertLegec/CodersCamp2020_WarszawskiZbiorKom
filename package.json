@@ -26,6 +26,7 @@
   "homepage": "https://github.com/CodersCamp2020/CodersCamp2020.Project.JavaScript.StarWarsQuiz#readme",
   "dependencies": {
     "@tarekraafat/autocomplete.js": "^8.2.1",
+    "core-js": "^3.8.2",
     "leaflet": "^1.7.1",
     "regenerator-runtime": "^0.13.7",
     "uuid": "^8.3.0"

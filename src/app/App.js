@@ -25,7 +25,7 @@ export const App = ({options}) => {
         if(stopMarker !== undefined){
             map.removeMarker(wawMap, stopMarker);
         }
-            stopMarker = map.addBusStopMarker(wawMap, selection, listOfLines);     
+            stopMarker = map.addBusStopMarker(wawMap, selection, listOfLines);
     })
 
     setInterval(async function() {
