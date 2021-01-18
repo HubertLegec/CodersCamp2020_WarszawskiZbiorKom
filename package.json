@@ -36,6 +36,7 @@
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/user-event": "^12.2.2",
     "babel-jest": "^26.5.0",
+    "babel-preset-env": "^1.7.0",
     "cross-env": "^7.0.3",
     "fetch-mock-jest": "^1.5.1",
     "identity-obj-proxy": "^3.0.0",
@@ -50,7 +51,7 @@
   },
   "babel": {
     "presets": [
-      "@babel/preset-env"
+      "env"
     ]
   },
   "jest": {
