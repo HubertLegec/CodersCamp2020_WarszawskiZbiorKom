@@ -14,4 +14,6 @@ export const App = async ({options}) => {
     const listOfLines = await apiClient.getLines(obj.id, obj.stopNr);
     const stopLinesManager = new StopLinesManager('zbiorkom-app', listOfLines);
     stopLinesManager.createButton();
+    stopLinesManager.displayTimetableDatalist();
+    stopLinesManager.createTimetableButton(obj.id, obj.stopNr, apiClient.getTimetable);
 }

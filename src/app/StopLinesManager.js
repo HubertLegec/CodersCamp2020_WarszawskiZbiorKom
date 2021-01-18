@@ -20,6 +20,22 @@ export class StopLinesManager {
         document.getElementById(this.buttonContainerId).append(button);
         return button;
     }
+    createTimetableButton(id, stopNr, getTimetable) {
+        const buttonTimetable = document.createElement('button')
+        buttonTimetable.setAttribute('type', 'submit');
+        buttonTimetable.id = 'buttonTimetable';
+        buttonTimetable.innerText = 'Wyświetl rozkład';
+        document.getElementById(this.buttonContainerId).append(buttonTimetable);
+
+        buttonTimetable.addEventListener("click", async () =>{
+            this.removeElementsByClass('elementOfTimetable')
+            let timetableLine = document.getElementById('inputTimetable').value;
+            let apiTimetable = await getTimetable(id, stopNr, timetableLine)
+            this.displayTimetable(apiTimetable)
+            return timetableLine
+        });
+        return buttonTimetable;
+    }
 
     createLinesTable() {
         const linesDiv = document.createElement('div');
@@ -92,6 +108,72 @@ export class StopLinesManager {
         })
         .forEach(opt => datalist.append(opt));
     }
+    displayTimetableDatalist(){              
+        let parent = document.getElementById(this.buttonContainerId);
+
+        let timetable = document.createElement('datalist')
+        timetable.setAttribute('id', 'timetable')
+        timetable.classList.add('timetableDatalist')
+
+        let label = document.createElement('label')            
+        label.setAttribute("for","timetableChoice");
+        label.textContent = "Wybierz numer linii:"
+
+        let inputTimetable = document.createElement('input')
+        inputTimetable.setAttribute("list","timetable");
+        inputTimetable.setAttribute('id', 'inputTimetable');
+        inputTimetable.setAttribute('name', 'timetableChoice')
+
+        parent.appendChild(timetable)
+        parent.appendChild(label)
+        parent.appendChild(inputTimetable)
+        
+        var lines = '';
+        for (var i = 0; i < this.arrOfTransports.length; i++) {
+            lines += '<option value="' + this.arrOfTransports[i] + '" />';
+        }
+        document.getElementById('timetable').innerHTML=lines
+    }
+    
+    displayTimetable(apiTimetable){
+        let parent = document.getElementById(this.buttonContainerId);
+        let hoursTimetable = []
+        apiTimetable.map( el =>{
+            let hour = el.slice(0,2)
+            hoursTimetable.push(hour)
+        })
+        let uniqueHoursTimetable = [...new Set(hoursTimetable)]
+        console.log(uniqueHoursTimetable)
+        if(document.getElementsByClassName('timetable').length === 0)
+        {
+            const timetable = document.createElement('div')
+            timetable.classList.add('timetable')
+            timetable.id = 'timetable';
+            timetable.innerHTML = `<div class="timetableTitle" , id="timetableTitle">
+            <h3>Rozkład jazdy</h3>
+        </div>
+        <div class="timetableTimes">
+            <div class="timetableHours" , id="timetableTimes">
+                Godziny
+            </div>
+            <div class="timetableMinutes" , id="timetableTimes">
+                Minuty
+            </div>
+        </div>`
+            parent.appendChild(timetable)
+        }
+
+        let parentHours = document.getElementsByClassName('timetableHours');
+        
+        for(let i = 0; i<uniqueHoursTimetable.length; i++){
+            // console.log(uniqueHoursTimetable[i])
+            let para = document.createElement("p");
+            para.classList.add("elementOfHoursTable");
+            para.innerHTML = uniqueHoursTimetable[i];
+            parentHours.appendChild(para)
+        }
+    }
+    
         
 }
 

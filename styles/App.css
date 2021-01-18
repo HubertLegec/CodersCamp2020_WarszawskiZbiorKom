@@ -23,4 +23,38 @@ div.linesList{
     display: flex;
     flex-direction: row;
 }
+.timetable{
+    width: 200px;
+    height: 500px;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+}
+.elementOfTimetable{
+    font-size: 12px;
+    line-height: 14px;
+    margin: 0;
+    padding: 2px;
+}
+.timetableTitle{
+    width: 200px;
+    text-align: center;
+}
+.timetableTimes{
+    display: flex;
+    flex-wrap: wrap;
+    height: 400px;
+    justify-content: space-around;
+}
+#timetableTimes{
+    text-align: center;
+    display: flex;
+}
+.timetableMinutes{
+    flex-grow: 1;
+    justify-content: center;
+}
+.timetableHours{
+    flex-direction: column;
+}
 
