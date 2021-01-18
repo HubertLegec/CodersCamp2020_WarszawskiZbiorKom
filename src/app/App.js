@@ -7,8 +7,7 @@ import {SearchManager} from './SearchManager';
 export const App = ({options}) => {
     const storage = new StorageManager();
     const apiClient = new ApiClient(options['wawApiBaseUrl'], options['wawApiVehicles'], options['wawApiKey']);
-    const map = new MapManager();
-    const wawMap = map.initializeMap();
+    const map = new MapManager('zbiorkom-app');
     let stopMarker;
     let vehicleMarkers = [];
 
@@ -18,6 +17,8 @@ export const App = ({options}) => {
     const searchManager = new SearchManager('zbiorkom-app', () => storage.getData('stopsList'));
 
     searchManager.createInput();
+    const wawMap = map.initializeMap();
+    
     searchManager.addSelectionHandler(async (selection) => {
         const listOfLines = await apiClient.getLines(selection.id, selection.number);
         const stopLinesManager = new StopLinesManager('zbiorkom-app', listOfLines);

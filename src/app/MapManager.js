@@ -2,10 +2,19 @@ import busStopIconUrl from '../img/bus-stop.png';
 import vehicleIconUrl from '../img/bus.png';
 
 export class MapManager {
-    
+
+    constructor(mapContainerId) {
+        this.mapContainerId = mapContainerId;
+      }
+
     initializeMap(){
+        const mapContainer = document.createElement('div');
+        mapContainer.id = 'map';
+        mapContainer.style = "width: 100%; height: 80vh";
+        document.getElementById(this.mapContainerId).append(mapContainer);
         const L = require('leaflet');
-        const map = L.map('map').setView([52.2297700, 21.0117800], 12);
+        const map = L.map(mapContainer,{ zoomControl: false }).setView([52.2297700, 21.0117800], 12);
+        L.control.zoom({position: 'bottomright'}).addTo(map);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
