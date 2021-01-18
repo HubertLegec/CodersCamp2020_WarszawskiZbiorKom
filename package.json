@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Aplikacja ułatwiająca korzystanie z warszawskiej komunikacji miejskiej stworzona w ramach CodersCamp 2020",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "clean": "rimraf .cache && rimraf coverage && rimraf dist && rimraf node_modules",
     "prebuild": "rimraf dist",
