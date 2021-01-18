@@ -5,7 +5,7 @@ export class TimetableManager {
     }
 
     createTimetable(){
-        this.removeTimetable('timetable');
+        this.clearTimetable('timetable');
         const container = document.getElementById(this.timetableContainerId);
         const timetable = this.displayTimetable();
         container.append(timetable);
@@ -38,7 +38,7 @@ export class TimetableManager {
         return timetable;
     }
 
-    removeTimetable(id){
+    clearTimetable(id){
         const element = document.getElementById(id);
         if(element){
             element.parentNode.removeChild(element);
