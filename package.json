@@ -43,7 +43,6 @@
     "jest": "^26.4.2",
     "jest-fetch-mock": "^3.0.3",
     "jest-localstorage-mock": "^2.4.6",
-    "node-fetch": "^2.6.1",
     "parcel": "^1.12.4",
     "parcel-plugin-static-files-copy": "^2.5.0",
     "prettier": "^2.1.2",

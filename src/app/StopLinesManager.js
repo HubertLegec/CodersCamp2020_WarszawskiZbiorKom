@@ -20,7 +20,7 @@ export class StopLinesManager {
     displayLines(arrOfTransports){              
         let parent = document.getElementById('linesList');
         //check count of children of div and optionally add tram and bus list
-        if(parent.childElementCount == 0 ){
+        if(parent.childElementCount === 0 ){
             let tramList = document.createElement('div');
             tramList.classList.add('list');
             tramList.setAttribute('id', 'tramList');
@@ -43,10 +43,10 @@ export class StopLinesManager {
             let para = document.createElement("p");
             para.classList.add("elementOfList");
             para.innerHTML = element;
-            if (this.verifyVehicleType(element) =='bus') {
+            if (this.verifyVehicleType(element) ==='bus') {
                 busList.appendChild(para);
                 } 
-            else if(this.verifyVehicleType(element) == 'tram') {
+            else if(this.verifyVehicleType(element) === 'tram') {
                 tramList.appendChild(para);
                 }
             else {

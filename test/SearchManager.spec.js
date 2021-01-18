@@ -1,9 +1,7 @@
 import { SearchManager } from '../src/app/SearchManager';
 import { getByRole, waitFor, fireEvent, queryByText, findByText } from '@testing-library/dom';
 import '@testing-library/jest-dom';
-import { async } from 'regenerator-runtime';
 
-//przy imporcie searchmanagera jest błąd 'Missing class properties transform'
 describe('SearchManager', () => {
   let container;
 
