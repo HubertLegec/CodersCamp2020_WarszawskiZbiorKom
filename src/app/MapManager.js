@@ -1,5 +1,6 @@
 import busStopIconUrl from '../img/bus-stop.png';
 import vehicleIconUrl from '../img/bus.png';
+import 'leaflet/dist/leaflet.css';
 
 export class MapManager {
 

@@ -2,7 +2,8 @@
   "name": "WarszawskiZbiorKom",
   "version": "0.0.1",
   "description": "Aplikacja ułatwiająca korzystanie z warszawskiej komunikacji miejskiej stworzona w ramach CodersCamp 2020",
-  "main": "index.js",
+  "main": "src/index.js",
+  "type": "module",
   "scripts": {
     "clean": "rimraf .cache && rimraf coverage && rimraf dist && rimraf node_modules",
     "prebuild": "rimraf dist",
@@ -30,12 +31,10 @@
     "uuid": "^8.3.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.11.6",
-    "@babel/preset-env": "^7.11.5",
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
     "@testing-library/dom": "^7.29.4",
     "@testing-library/jest-dom": "^5.11.6",
-    "@testing-library/user-event": "^12.2.2",
-    "babel-jest": "^26.5.0",
     "cross-env": "^7.0.3",
     "fetch-mock-jest": "^1.5.1",
     "identity-obj-proxy": "^3.0.0",
@@ -56,7 +55,8 @@
   "jest": {
     "moduleFileExtensions": [
       "js",
-      "json"
+      "json",
+      "ts"
     ],
     "moduleNameMapper": {
       ".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "identity-obj-proxy"
