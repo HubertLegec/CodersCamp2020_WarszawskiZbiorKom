@@ -1,5 +1,6 @@
 import {Stop} from './Stop';
 import { Vehicle } from './Vehicle';
+
 export class ApiClient {
     constructor(baseUrl, vehiclesUrl, apiKey){
         this.baseUrl = baseUrl;

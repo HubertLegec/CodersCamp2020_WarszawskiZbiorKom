@@ -2,7 +2,8 @@
   "name": "WarszawskiZbiorKom",
   "version": "0.0.1",
   "description": "Aplikacja ułatwiająca korzystanie z warszawskiej komunikacji miejskiej stworzona w ramach CodersCamp 2020",
-  "main": "index.js",
+  "main": "src/index.js",
+  "type": "module",
   "scripts": {
     "clean": "rimraf .cache && rimraf coverage && rimraf dist && rimraf node_modules",
     "prebuild": "rimraf dist",
@@ -57,7 +58,8 @@
   "jest": {
     "moduleFileExtensions": [
       "js",
-      "json"
+      "json",
+      "ts"
     ],
     "moduleNameMapper": {
       ".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "identity-obj-proxy"

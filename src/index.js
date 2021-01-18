@@ -1,4 +1,4 @@
-import {App} from './src/app/App';
+import {App} from './app/App';
 
 const WAW_API_BASE_URL = 'https://api.um.warszawa.pl/api/' || process.env.WAW_API_BASE_URL;
 const WAW_API_ALL_STOPS = 'action/dbstore_get/?id=ab75c33d-3a26-4342-b36a-6e5fef0a3ac3&sortBy=id&apikey=';
