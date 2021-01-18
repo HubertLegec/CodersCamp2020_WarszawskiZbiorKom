@@ -26,6 +26,24 @@ export class ApiClient {
         return data['result'].map(el => el['values'][0]['value']);                        
     }
 
+    async getTimes(id, stopNr, line){
+        const endpointUrl = `action/dbtimetable_get/?id=e923fa0e-d96c-43f9-ae6e-60518c9f3238&busstopId=${id}&busstopNr=${stopNr}&line=${line}&apikey=${this.apiKey}`;
+        const response = await fetch(`${this.baseUrl}${endpointUrl}`);
+        const data = await response.json();
+
+        const allHoursAndMinutes = data['result']
+        .map(e => e['values'][5]['value'])
+        .map(e => {return { hour: e.substr(0,2), minutes: e.substr(3,2) }})
+        .reduce((prevVal, currVal) => {
+            if(prevVal[currVal.hour]){
+                return {...prevVal, [currVal.hour]: [...prevVal[currVal.hour], currVal.minutes]};
+            }
+            return {...prevVal, [currVal.hour]: [currVal.minutes]};
+        }, {})
+        
+        return Object.keys(allHoursAndMinutes).map(hour => ({hour, minutes: allHoursAndMinutes[hour]})).sort((h1, h2) => h1.hour.localeCompare(h2.hour));
+    }
+
 }  
 
 
