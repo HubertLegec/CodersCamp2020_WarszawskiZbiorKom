@@ -76,7 +76,7 @@ export class SearchManager {
           element.innerHTML = `<span style='text-overflow: ellipsis; white-space: nowrap; overflow: hidden;'>
                 ${element.innerHTML}</span>
                 <span style='display: flex; align-items: center; font-size: 13px; font-weight: 100; text-transform: uppercase; color: rgba(0,0,0,.2);'>
-                Nazwa przystanku</span>`;
+                </span>`;
         },
       },
       noResults: (dataFeedback, generateList) => {
