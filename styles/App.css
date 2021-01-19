@@ -1,8 +1,31 @@
+*{
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+}
+
+#map{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+}
+
+#panel{
+    position: absolute;
+    width: 360px;
+    height: calc(100vh - 40px);
+    top: 20px;
+    left: 20px;
+    z-index: 2;
+    padding: 20px;
+    background: #fffe;
 }
 
 #autoComplete{
@@ -29,22 +52,15 @@ body {
 .autoComplete_highlighted{
     font-weight: bold;
 }
+
 div.list{
-    width: 180px;
-    height: 300px;
-    border: 2px solid black;
+    width: 100%;
 }
+
 div.list p{
     text-align: center;
     display: block;
-    width: 180px;
-    height: 20px;
-    line-height: 20px;
-    margin: 8px;
     margin: 0 auto;
 }
-div#linesList{
-    display: flex;
-    flex-direction: row;
-}
+
 

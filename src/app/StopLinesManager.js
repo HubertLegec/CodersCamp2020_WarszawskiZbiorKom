@@ -1,6 +1,6 @@
 export class StopLinesManager {
-    
-    constructor(linesTableContainerId, arrOfTransports){
+
+    constructor(linesTableContainerId, arrOfTransports) {
         this.linesTableContainerId = linesTableContainerId;
         this.arrOfTransports = arrOfTransports;
     }
@@ -16,52 +16,66 @@ export class StopLinesManager {
         return linesDiv;
     }
 
-    addClickHandler(handler){
+    addClickHandler(handler) {
         this.clickHandler = handler;
     }
 
     //function add two divs (tram/bus list) and append there lines from this stop
-    displayLines(arrOfTransports){              
+    displayLines(arrOfTransports) {
         let parent = document.getElementById('linesList');
 
+        let busesButton = document.createElement('button');
+        busesButton.setAttribute('id', 'busesButton');
+        busesButton.addEventListener('click', () => this.switchActive('busList'));
+        parent.appendChild(busesButton);
+        let tramsButton = document.createElement('button');
+        tramsButton.setAttribute('id', 'tramsButton');
+        tramsButton.addEventListener('click', () => this.switchActive('tramList'));
+        parent.appendChild(tramsButton);
+        
         let tramList = document.createElement('div');
         tramList.classList.add('list');
         tramList.setAttribute('id', 'tramList');
-        let tTitlePara = document.createElement('p');
-        tTitlePara.innerHTML = 'Lista Tramwajów';
-        tramList.appendChild(tTitlePara);
-
         let busList = document.createElement('div');
         busList.classList.add('list');
         busList.setAttribute('id', 'busList');
+
         let bTitlePara = document.createElement('p');
         bTitlePara.innerHTML = 'Lista Autobusów';
         busList.appendChild(bTitlePara);
+        let tTitlePara = document.createElement('p');
+        tTitlePara.innerHTML = 'Lista Tramwajów';
+        tramList.appendChild(tTitlePara);
+        
 
-        parent.appendChild(tramList);
-        parent.appendChild(busList);
         //check number of line and add to adequate div
         arrOfTransports.forEach(element => {
             let para = document.createElement("button");
             para.classList.add("elementOfList");
             para.textContent = element;
             para.addEventListener('click', () => this.clickHandler(element));
-            if (this.verifyVehicleType(element) ==='bus') {
+            if (this.verifyVehicleType(element) === 'bus') {
                 busList.appendChild(para);
-                } 
-            else if(this.verifyVehicleType(element) === 'tram') {
+            }
+            else if (this.verifyVehicleType(element) === 'tram') {
                 tramList.appendChild(para);
-                }
+            }
             else {
                 return null
             }
-        });  
+        });
+        busList.childElementCount <= 1 ? busList.classList.add('empty') : busList.classList.add('active');
+        tramList.childElementCount <= 1 ? tramList.classList.add('empty') : tramList.classList.add('active');
+
+        parent.appendChild(busList);
+        parent.appendChild(tramList);
+        
     }
 
-    verifyVehicleType(line){
-        if (line >= 100 || line[0] === "N" || line[0] === "L" || line[0] === "E"){
+    verifyVehicleType(line) {
+        if (line >= 100 || line[0] === "N" || line[0] === "L" || line[0] === "E") {
             return 'bus';
-        } else if(line > 0 && line <100){
+        } else if (line > 0 && line < 100) {
             return 'tram';
         } else {
             return 'other';
@@ -69,12 +83,18 @@ export class StopLinesManager {
     }
 
     //function remove lines of old search
-    removeLinesTable(id){
+    removeLinesTable(id) {
         const element = document.getElementById(id);
-        if(element){
+        if (element) {
             element.parentNode.removeChild(element);
-        }         
+        }
     }
-        
+
+    switchActive(name) {
+        console.log(name);
+        Array.from(document.querySelectorAll('#linesList .list')).map((el) => el.classList.remove('active'));
+        document.getElementById(name).classList.add('active');
+    }
+
 }
 

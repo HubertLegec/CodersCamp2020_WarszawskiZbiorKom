@@ -15,24 +15,27 @@ export class TimetableManager {
         const timetable = document.createElement('div');
         timetable.id = 'timetable';
 
-        const hourColumn = document.createElement('div');
-        hourColumn.id = 'hourColumn';
-        const minutesColumn = document.createElement('div');
-        minutesColumn.id = 'minutesColumn';
-        timetable.append(hourColumn);
-        timetable.append(minutesColumn);
-
         this.arrivalTimesList.forEach(e => {
+            console.log(e);
             const hourRow = document.createElement('div');
+            hourRow.classList.add('hour-row');
+            const hourSpan = document.createElement('span');
+            hourSpan.classList.add('hour');
             if(e.hour >= 24){
                 e.hour-= 24;
                 e.hour = '0' + e.hour;
             }
-            hourRow.innerText = e.hour;
-            hourColumn.append(hourRow);
+            hourSpan.innerText = e.hour;
+            hourRow.append(hourSpan);
             const minutesRow = document.createElement('div');
-            minutesRow.innerText = e.minutes.join(' ');
-            minutesColumn.append(minutesRow);            
+            e.minutes.map((m) => {
+                const minuteSpan = document.createElement('span');
+                minuteSpan.classList.add('minute');
+                minuteSpan.innerText = m;
+                minutesRow.append(minuteSpan);
+            });
+            hourRow.append(minutesRow);
+            timetable.append(hourRow);        
         })
         
         return timetable;
