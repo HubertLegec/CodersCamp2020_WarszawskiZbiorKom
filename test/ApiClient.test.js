@@ -48,7 +48,7 @@ describe('ApiClient testing', () => {
             fetch.mockOnce(JSON.stringify(mockResponse));
             const apiClient = new ApiClient('https://api.um.warszawa.pl/api/', 'vehicles', 'apiKey');
 
-            const returnedVehicles = await apiClient.getVehicles(1, 112);
+            const returnedVehicles = await apiClient.getVehicles('bus', 112);
             const vehicleNumbers = returnedVehicles.map(e => e['vehicleNumber']);
             const vehicleBrigades = returnedVehicles.map(e => e['brigade']);
 

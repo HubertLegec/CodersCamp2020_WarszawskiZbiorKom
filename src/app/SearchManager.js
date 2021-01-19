@@ -92,8 +92,6 @@ export class SearchManager {
         document.querySelector('#autoComplete').blur();
         // Prepare User's Selected Value
         const selection = feedback.selection.value[feedback.selection.key];
-        // Render selected choice to selection div
-        // document.querySelector(".selected-stop").innerHTML = selection;
         // Replace Input value with the selected value
         document.querySelector('#autoComplete').value = selection;
         // Console log autoComplete data feedback
