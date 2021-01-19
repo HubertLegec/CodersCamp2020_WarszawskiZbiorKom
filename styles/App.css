@@ -41,6 +41,34 @@ button{
     background: #fffe;
     overflow-y: auto;
     overflow-x: hidden;
+    transform: translateX(0);
+    -webkit-transform: translateX(0);
+    transition: transform .5s ease-in-out;
+}
+
+#panel.hidden{
+    transform: translateX(calc(-100% + 20px));
+    -webkit-transform: translateX(calc(-100% + 20px));
+}
+
+#togglePanelButton {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url(../src/img/slide_icon.svg);
+    margin: -15px auto 0;
+    transform: rotate(0);
+}
+
+#panel.hidden #togglePanelButton{
+    transform: rotate(180deg);
 }
 
 #autoComplete {
@@ -55,6 +83,7 @@ button{
     padding: 0;
     max-height: 100%;
     overflow-y: auto;
+    min-height: 200px;
 }
 
 #autoComplete_list li{
@@ -112,7 +141,8 @@ div.list p{
 }
 
 #timetable {
-    overflow-y: scroll;
+    overflow-y: auto;
+    overflow-x: hidden;
     height: 100%;
     width: calc(100% + 40px);
     min-height: 200px;
@@ -129,8 +159,8 @@ button.elementOfList {
     width: calc(100% - 40px);
     display: grid;
     grid-template-columns: 50px calc(100% - 50px);
-    grid-auto-rows: 40px;
     margin-bottom: 2px;
+    min-height: 45px;
 }
 
 .hour-row:nth-child(even){
@@ -150,8 +180,9 @@ span.hour {
     display: flex;
     align-items: center;
     justify-content: normal;
+    flex-wrap: wrap;
 }
 
 span.minute {
-    margin: 0 10px;
+    padding: 10px;
 }
