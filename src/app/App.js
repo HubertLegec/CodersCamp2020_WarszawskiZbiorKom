@@ -52,7 +52,6 @@ export const App = async ({options}) => {
     function refreshVehiclePosition(line){
         clearInterval(intervalHandle);
         intervalHandle = setInterval(async () => {
-            console.log(vehicles);
             vehicles = await apiClient.getVehicles(vehicleType, line);
             vehicleMarkers = map.setVehicleMarkers(wawMap, vehicles, vehicleMarkers);
         }, 5000)

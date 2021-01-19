@@ -1,13 +1,13 @@
 export class PanelManager{
 
-    constructor(panelConteinerId){
-        this.panelConteinerId = panelConteinerId;
+    constructor(panelContainerId){
+        this.panelContainerId = panelContainerId;
     }
 
     createPanel(){
         const panelContainer = document.createElement('div');
         panelContainer.id = 'panel';
-        document.getElementById(this.panelConteinerId).append(panelContainer);
+        document.getElementById(this.panelContainerId).append(panelContainer);
     }
 
     removeElement(elementId){

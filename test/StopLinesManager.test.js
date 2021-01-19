@@ -36,7 +36,7 @@ describe('StopLinesManager', () => {
         stopLinesManager.createLinesTable();  
         
         data.forEach(nr => 
-            expect(getByText(container, containsIgnoringHtmlTags(nr))).toBeInTheDocument()
+            expect(getByText(container, nr)).toBeInTheDocument()
         );       
     })  
     
@@ -52,7 +52,7 @@ describe('StopLinesManager', () => {
 
         expect(stopLines.length).toEqual(2);
         data2.forEach(nr => 
-            expect(getByText(container, containsIgnoringHtmlTags(nr))).toBeInTheDocument()
+            expect(getByText(container, nr)).toBeInTheDocument()
         );
     })
 

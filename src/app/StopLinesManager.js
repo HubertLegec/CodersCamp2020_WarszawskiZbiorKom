@@ -44,7 +44,7 @@ export class StopLinesManager {
         arrOfTransports.forEach(element => {
             let para = document.createElement("button");
             para.classList.add("elementOfList");
-            para.innerText = element;
+            para.textContent = element;
             para.addEventListener('click', () => this.clickHandler(element));
             if (this.verifyVehicleType(element) ==='bus') {
                 busList.appendChild(para);
