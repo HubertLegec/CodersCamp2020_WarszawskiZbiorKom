@@ -46,7 +46,7 @@ export class MapManager {
          }
 
         let zoomBoundsToBeSet;
-        if(vehicleMarkers.length === 0){
+        if(vehicleMarkers.length === 0 && vehicles.length > 0){
             zoomBoundsToBeSet = true;
         }
         vehicles.forEach(vehicle => {
@@ -59,10 +59,8 @@ export class MapManager {
             }
         })
         if(zoomBoundsToBeSet){
-            if(vehicleMarkers.length){
-                map.flyToBounds(this.findBounds(vehicleMarkers));
-                zoomBoundsToBeSet = false;
-            }
+            map.flyToBounds(this.findBounds(vehicleMarkers));
+            zoomBoundsToBeSet = false;
         }
         return vehicleMarkers;
     }

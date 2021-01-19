@@ -15,8 +15,15 @@ export class TimetableManager {
         const timetable = document.createElement('div');
         timetable.id = 'timetable';
 
+        if(this.arrivalTimesList.length === 0){
+            let error = document.createElement('p');
+            error.classList.add('error-message');
+            error.innerText = "Brak odjazdów z tego przystanku";
+            timetable.append(error);
+            return timetable;
+        }
+
         this.arrivalTimesList.forEach(e => {
-            console.log(e);
             const hourRow = document.createElement('div');
             hourRow.classList.add('hour-row');
             const hourSpan = document.createElement('span');
@@ -28,6 +35,7 @@ export class TimetableManager {
             hourSpan.innerText = e.hour;
             hourRow.append(hourSpan);
             const minutesRow = document.createElement('div');
+            minutesRow.classList.add('minutes');
             e.minutes.map((m) => {
                 const minuteSpan = document.createElement('span');
                 minuteSpan.classList.add('minute');

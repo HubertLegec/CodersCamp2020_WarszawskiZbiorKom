@@ -8,11 +8,14 @@ export class SearchManager {
   }
 
   createInput() {
+    const heading = document.createElement('h2');
+    heading.id = 'autoCompleteHeading';
+    heading.innerText = 'Znajdź przystanek';
     const input = document.createElement('input');
     input.id = 'autoComplete';
     input.type = 'text';
 
-    document.getElementById(this.inputContainerId).append(input);
+    document.getElementById(this.inputContainerId).append(heading, input);
     this.autoComplete();
     return input;
   }
@@ -30,7 +33,7 @@ export class SearchManager {
           // Loading placeholder text
           document
             .querySelector('#autoComplete')
-            .setAttribute('placeholder', 'Znajdź przystanek');
+            .setAttribute('placeholder', 'Wpisz nazwę');
           return this.getStops()
             .map(s => ({ ...s, fullName: `${s.name} ${s.number}` }))
             .sort((s1, s2) => s1.fullName.localeCompare(s2.fullName));
@@ -56,7 +59,7 @@ export class SearchManager {
         },
       },
       cache: true,
-      placeHolder: 'Znajdź przystanek',
+      placeHolder: 'Wpisz nazwę',
       threshold: 1,
       searchEngine: 'strict', // "loose"
       highlight: true,

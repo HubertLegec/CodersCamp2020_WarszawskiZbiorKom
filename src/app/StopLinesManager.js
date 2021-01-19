@@ -11,7 +11,7 @@ export class StopLinesManager {
         const linesDiv = document.createElement('div');
         linesDiv.id = 'linesList';
         document.getElementById(this.linesTableContainerId).append(linesDiv);
-        this.displayLines(this.arrOfTransports)
+        this.displayLines(this.arrOfTransports);
 
         return linesDiv;
     }
@@ -24,14 +24,18 @@ export class StopLinesManager {
     displayLines(arrOfTransports) {
         let parent = document.getElementById('linesList');
 
+        let buttons = document.createElement('div');
+        buttons.classList.add('switch-buttons');
+
         let busesButton = document.createElement('button');
         busesButton.setAttribute('id', 'busesButton');
         busesButton.addEventListener('click', () => this.switchActive('busList'));
-        parent.appendChild(busesButton);
         let tramsButton = document.createElement('button');
         tramsButton.setAttribute('id', 'tramsButton');
         tramsButton.addEventListener('click', () => this.switchActive('tramList'));
-        parent.appendChild(tramsButton);
+        buttons.appendChild(busesButton);
+        buttons.appendChild(tramsButton);
+        parent.appendChild(buttons);
         
         let tramList = document.createElement('div');
         tramList.classList.add('list');
@@ -64,8 +68,20 @@ export class StopLinesManager {
                 return null
             }
         });
-        busList.childElementCount <= 1 ? busList.classList.add('empty') : busList.classList.add('active');
-        tramList.childElementCount <= 1 ? tramList.classList.add('empty') : tramList.classList.add('active');
+        if(busList.childElementCount <= 1){
+            busList.classList.add('empty');
+            busList.innerText = 'Brak wyników';
+        }
+        else{
+            busList.classList.add('active');
+        }
+        if(tramList.childElementCount <= 1){
+            tramList.classList.add('empty');
+            tramList.innerText = 'Brak wyników';
+        }
+        else{
+            tramList.classList.add('active');
+        }
 
         parent.appendChild(busList);
         parent.appendChild(tramList);
@@ -91,7 +107,6 @@ export class StopLinesManager {
     }
 
     switchActive(name) {
-        console.log(name);
         Array.from(document.querySelectorAll('#linesList .list')).map((el) => el.classList.remove('active'));
         document.getElementById(name).classList.add('active');
     }

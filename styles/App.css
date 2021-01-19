@@ -1,5 +1,11 @@
 *{
     box-sizing: border-box;
+    outline: none;
+}
+
+html, body{
+    width: 100vw;
+    height: 100vh;
 }
 
 body {
@@ -8,8 +14,12 @@ body {
     padding: 0;
 }
 
+button{
+    cursor: pointer;
+}
+
 #map{
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
@@ -18,27 +28,37 @@ body {
 }
 
 #panel{
-    position: absolute;
+    position: fixed;
+    display: flex;
+    flex-flow: column;
     width: 360px;
+    max-width: calc(100vw - 40px);
     height: calc(100vh - 40px);
     top: 20px;
     left: 20px;
     z-index: 2;
     padding: 20px;
     background: #fffe;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
-#autoComplete{
-    padding: 5px;
+#autoComplete {
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
 }
 
 #autoComplete_list{
-    max-width: 400px;
-    box-shadow: 2px 2px 2px rgba(0,0,0,.1);
     padding: 0;
+    max-height: 100%;
+    overflow-y: auto;
 }
 
 #autoComplete_list li{
+    width: 100%;
     padding: 10px 5px;
     border-bottom: 1px solid #eee;
     cursor: pointer;
@@ -60,7 +80,78 @@ div.list{
 div.list p{
     text-align: center;
     display: block;
-    margin: 0 auto;
+    margin: 0 auto 10px;
 }
 
+#linesList .list:not(.active){
+    display: none;
+}
 
+#linesList > div{
+    margin: 10px 0;
+    padding: 20px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.switch-buttons button{
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+#busesButton{
+    background-image: url(../src/img/bus_icon.svg);
+}
+
+#tramsButton{
+    background-image: url(../src/img/tram_icon.svg);
+}
+
+#timetable {
+    overflow-y: scroll;
+    height: 100%;
+    width: calc(100% + 40px);
+    min-height: 200px;
+}
+
+button.elementOfList {
+    background: none;
+    border-radius: 2px;
+    width: 50px;
+    margin: 7px;
+}
+
+.hour-row {
+    width: calc(100% - 40px);
+    display: grid;
+    grid-template-columns: 50px calc(100% - 50px);
+    grid-auto-rows: 40px;
+    margin-bottom: 2px;
+}
+
+.hour-row:nth-child(even){
+    background-color: #f3f3f3;
+}
+
+span.hour {
+    display: flex;
+    color: #fff;
+    font-weight: bold;
+    background: #fc5145;
+    align-items: center;
+    justify-content: center;
+}
+
+.minutes {
+    display: flex;
+    align-items: center;
+    justify-content: normal;
+}
+
+span.minute {
+    margin: 0 10px;
+}
