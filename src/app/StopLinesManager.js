@@ -109,7 +109,6 @@ export class StopLinesManager {
     switchActive(name) {
         Array.from(document.querySelectorAll('#linesList .list')).map((el) => el.classList.remove('active'));
         document.getElementById(name).classList.add('active');
-        document.getElementById('timetable').innerHTML = '';
     }
 
 }
