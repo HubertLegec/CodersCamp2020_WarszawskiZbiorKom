@@ -15,24 +15,35 @@ export class TimetableManager {
         const timetable = document.createElement('div');
         timetable.id = 'timetable';
 
-        const hourColumn = document.createElement('div');
-        hourColumn.id = 'hourColumn';
-        const minutesColumn = document.createElement('div');
-        minutesColumn.id = 'minutesColumn';
-        timetable.append(hourColumn);
-        timetable.append(minutesColumn);
+        if(this.arrivalTimesList.length === 0){
+            let error = document.createElement('p');
+            error.classList.add('error-message');
+            error.innerText = "Brak odjazdów z tego przystanku";
+            timetable.append(error);
+            return timetable;
+        }
 
         this.arrivalTimesList.forEach(e => {
             const hourRow = document.createElement('div');
+            hourRow.classList.add('hour-row');
+            const hourSpan = document.createElement('span');
+            hourSpan.classList.add('hour');
             if(e.hour >= 24){
                 e.hour-= 24;
                 e.hour = '0' + e.hour;
             }
-            hourRow.innerText = e.hour;
-            hourColumn.append(hourRow);
+            hourSpan.innerText = e.hour;
+            hourRow.append(hourSpan);
             const minutesRow = document.createElement('div');
-            minutesRow.innerText = e.minutes.join(' ');
-            minutesColumn.append(minutesRow);            
+            minutesRow.classList.add('minutes');
+            e.minutes.map((m) => {
+                const minuteSpan = document.createElement('span');
+                minuteSpan.classList.add('minute');
+                minuteSpan.innerText = m;
+                minutesRow.append(minuteSpan);
+            });
+            hourRow.append(minutesRow);
+            timetable.append(hourRow);        
         })
         
         return timetable;

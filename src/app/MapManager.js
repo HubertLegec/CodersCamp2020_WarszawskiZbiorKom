@@ -12,7 +12,7 @@ export class MapManager {
     initializeMap(){
         const mapContainer = document.createElement('div');
         mapContainer.id = 'map';
-        mapContainer.style = "width: 100%; height: 80vh";
+        mapContainer.style = "width: 100vw; height: 100vh";
         document.getElementById(this.mapContainerId).append(mapContainer);
         const L = require('leaflet');
         const map = L.map(mapContainer,{ zoomControl: false }).setView([52.2297700, 21.0117800], 12);
@@ -46,7 +46,7 @@ export class MapManager {
          }
 
         let zoomBoundsToBeSet;
-        if(vehicleMarkers.length === 0){
+        if(vehicleMarkers.length === 0 && vehicles.length > 0){
             zoomBoundsToBeSet = true;
         }
         vehicles.forEach(vehicle => {
