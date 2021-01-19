@@ -35,11 +35,14 @@ export const App = async ({options}) => {
             const times = await apiClient.getTimes(selection.id, selection.number, handler);
             const timetableManager = new TimetableManager('panel', times);
             timetableManager.createTimetable();
+            if(intervalHandle !== undefined){
+                clearInterval(intervalHandle);
+                vehicleMarkers.forEach(marker => map.removeMarker(wawMap, marker));
+                vehicleMarkers = [];
+            }
             vehicleType = stopLinesManager.verifyVehicleType(handler);
-            vehicleMarkers.forEach(marker => map.removeMarker(wawMap, marker));
-            vehicleMarkers = [];
             vehicles = await apiClient.getVehicles(vehicleType, handler);
-            map.setVehicleMarkers(wawMap, vehicles, vehicleMarkers);
+            map.setVehicleMarkers(wawMap, vehicleType, vehicles, vehicleMarkers);
             refreshVehiclePosition(handler);
         })
 
@@ -47,13 +50,18 @@ export const App = async ({options}) => {
             map.removeMarker(wawMap, stopMarker);
         }
         stopMarker = map.addBusStopMarker(wawMap, selection, listOfLines);
+
+        if(intervalHandle !== undefined){
+            clearInterval(intervalHandle);
+            vehicleMarkers.forEach(marker => map.removeMarker(wawMap, marker));
+            vehicleMarkers = [];
+        }
     })
 
     function refreshVehiclePosition(line){
-        clearInterval(intervalHandle);
         intervalHandle = setInterval(async () => {
             vehicles = await apiClient.getVehicles(vehicleType, line);
-            vehicleMarkers = map.setVehicleMarkers(wawMap, vehicles, vehicleMarkers);
+            vehicleMarkers = map.setVehicleMarkers(wawMap, vehicleType, vehicles, vehicleMarkers);
         }, 5000)
     }   
 }
