@@ -1,3 +1,188 @@
+*{
+    box-sizing: border-box;
+    outline: none;
+}
+
+html, body{
+    width: 100vw;
+    height: 100vh;
+}
+
 body {
     font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+button{
+    cursor: pointer;
+}
+
+#map{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+}
+
+#panel{
+    position: fixed;
+    display: flex;
+    flex-flow: column;
+    width: 360px;
+    max-width: calc(100vw - 40px);
+    height: calc(100vh - 40px);
+    top: 20px;
+    left: 20px;
+    z-index: 2;
+    padding: 20px;
+    background: #fffe;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transform: translateX(0);
+    -webkit-transform: translateX(0);
+    transition: transform .5s ease-in-out;
+}
+
+#panel.hidden{
+    transform: translateX(calc(-100% + 20px));
+    -webkit-transform: translateX(calc(-100% + 20px));
+}
+
+#togglePanelButton {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url(../src/img/slide_icon.svg);
+    margin: -15px auto 0;
+    transform: rotate(0);
+}
+
+#panel.hidden #togglePanelButton{
+    transform: rotate(180deg);
+}
+
+#autoComplete {
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#autoComplete_list{
+    padding: 0;
+    max-height: 100%;
+    overflow-y: auto;
+    min-height: 200px;
+}
+
+#autoComplete_list li{
+    width: 100%;
+    padding: 10px 5px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background-color .2s ease;
+}
+
+#autoComplete_list li:hover{
+    background-color: rgba(0,0,0,.1);
+}
+
+.autoComplete_highlighted{
+    font-weight: bold;
+}
+
+div.list{
+    width: 100%;
+}
+
+div.list p{
+    text-align: center;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+#linesList .list:not(.active){
+    display: none;
+}
+
+#linesList > div{
+    margin: 10px 0;
+    padding: 20px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.switch-buttons button{
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+#busesButton{
+    background-image: url(../src/img/bus_icon.svg);
+}
+
+#tramsButton{
+    background-image: url(../src/img/tram_icon.svg);
+}
+
+#timetable {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100%;
+    width: calc(100% + 40px);
+    min-height: 200px;
+}
+
+button.elementOfList {
+    background: none;
+    border-radius: 2px;
+    width: 50px;
+    margin: 7px;
+}
+
+.hour-row {
+    width: calc(100% - 40px);
+    display: grid;
+    grid-template-columns: 50px calc(100% - 50px);
+    margin-bottom: 2px;
+    min-height: 45px;
+}
+
+.hour-row:nth-child(even){
+    background-color: #f3f3f3;
+}
+
+span.hour {
+    display: flex;
+    color: #fff;
+    font-weight: bold;
+    background: #fc5145;
+    align-items: center;
+    justify-content: center;
+}
+
+.minutes {
+    display: flex;
+    align-items: center;
+    justify-content: normal;
+    flex-wrap: wrap;
+}
+
+span.minute {
+    padding: 10px;
 }
