@@ -1,5 +1,6 @@
 import busStopIconUrl from '../img/bus-stop.png';
-import vehicleIconUrl from '../img/bus.png';
+import busIconUrl from '../img/bus.png';
+import tramIconUrl from '../img/tram.png';
 import 'leaflet/dist/leaflet.css';
 
 export class MapManager {
@@ -34,8 +35,16 @@ export class MapManager {
         return busStopMarker;
     };
 
-    setVehicleMarkers(map, vehicles, vehicleMarkers){
-        const vehicleIcon = L.icon({iconUrl: vehicleIconUrl, iconSize: [24, 24]});
+    setVehicleMarkers(map, vehicleType, vehicles, vehicleMarkers){
+        let vehicleIcon;
+        if(vehicleType ==='bus'){
+           vehicleIcon = L.icon({iconUrl: busIconUrl, iconSize: [24, 24]});
+        } else if(vehicleType ==='tram'){
+            vehicleIcon = L.icon({iconUrl: tramIconUrl, iconSize: [24, 24]});
+         } else{
+             throw new Error("Unable to track this vehicle.");
+         }
+
         let zoomBoundsToBeSet;
         if(vehicleMarkers.length === 0){
             zoomBoundsToBeSet = true;
